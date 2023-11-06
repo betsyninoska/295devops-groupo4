@@ -85,11 +85,9 @@ if [ -d "$repo" ]; then
 else
     echo -e "\n${LYELLOW} Installing web ...${NC}"
     sleep 1
-    #git clone -b app-295devops-travel https://github.com/betsyninoska/$repo.git
-    #cp -r $repo/* /var/www/html
+    git clone  https://github.com/betsyninoska/$repo.git
+    cp -r $repo/app-295devops-travel /var/www/html
 fi
-
-
 
 #Ajustar el config de php para que soporte los archivos dinamicos de php agregando index.php
 #Testear la compatibilidad -> ejemplo http://localhost/info.php
