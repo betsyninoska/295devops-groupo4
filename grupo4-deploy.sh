@@ -99,7 +99,7 @@ fi
 #Mariadb
 
 if dpkg -s mariadb-server > /dev/null 2>&1; then
-    echo -e "\n${LBLUE}El Servidor se encuentra Actualizado ...${NC}"
+    echo -e "\n${LBLUE}Mariadb se encuentra Actualizado ...${NC}"
 else
     echo -e "\n${LYELLOW}instalando MARIA DB ...${NC}"
     apt install -y mariadb-server
@@ -107,9 +107,17 @@ else
     systemctl start mariadb
     systemctl enable mariadb
 
-    echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
-
-    mariadb -h localhost  -u root -P 3306  -p devopstravel < app-295devops-travel/database/devopstravel.s
-    #Base de datos (Se debe automatizar que se pueda agregar el pass de la base de datos al momento de ejecutar el script asi evitamos que datos sensibles queden en el repositorio)
 fi #cierre condicional
+
+echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
+# **PENDIENTE***Base de datos (Se debe automatizar que se pueda agregar el pass de la base de datos al momento de ejecutar el script asi evitamos que datos sensibles queden en el repositorio)
+
+mysql
+create database  devopstravel;
+exit
+mariadb -h localhost  -u root -P 3306  -p devopstravel < 295devops-groupo4/app-295devops-travel/database/devopstravel.sql
+mysql
+use devopstravel;
+select * from booking;
+
 #Revisar la ingesta de datos en la base de datos
