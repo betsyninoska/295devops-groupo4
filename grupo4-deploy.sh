@@ -44,19 +44,22 @@ echo -e "\n${LGREEN} El Servidor se encuentra Actualizado ...${NC}"
 
 
   if dpkg -s apache2 > /dev/null 2>&1; then
-        echo -e "\n${LGREEN} El Apache2 se encuentra ya instalado ...${NC}"
-  else
-        echo -e "\n${LYELLOW} Instalanco Apache2 ...${NC}"
-        apt install -y apache2
-        #php
-        apt install -y php libapache2-mod-php php-mysql
-        systemctl start apache2
-        systemctl enable apache2
-        mv /var/www/html/index.html /var/www/html/index.html.bkp
-        echo -e "\n${LGREEN} Apache2 instalado ...${NC}"}
-        echo -e "\n${LGREEN} Version php:${NC} php -version"
-   fi
+      echo -e "\n${LGREEN} El Apache2 se encuentra ya instalado ...${NC}"
+else
+      echo -e "\n${LYELLOW} Instalanco Apache2 ...${NC}"
+      apt install -y apache2
+      #php
+      apt install -y php libapache2-mod-php php-mysql
+      systemctl start apache2
+      systemctl enable apache2
+      mv /var/www/html/index.html /var/www/html/index.html.bkp
+      echo -e "\n${LGREEN} Apache2 instalado ...${NC}"}
 
+
+ fi
+
+echo -e "\n${LGREEN} Version php:${NC}"
+php -version
 
 
 #git
@@ -65,7 +68,7 @@ if dpkg -s git > /dev/null 2>&1; then
 else
   apt install -y git
   echo -e "\n${LYELLOW}instalando GIT ...${NC}"
-if
+fi
 
 
 ##################################STAGE 2: [Build]######################
@@ -82,8 +85,8 @@ if [ -d "$repo" ]; then
 else
     echo -e "\n${LYELLOW} Installing web ...${NC}"
     sleep 1
-    git clone -b app-295devops-travel https://github.com/betsyninoska/$repo.git
-    cp -r $repo/* /var/www/html
+    #git clone -b app-295devops-travel https://github.com/betsyninoska/$repo.git
+    #cp -r $repo/* /var/www/html
 fi
 
 
