@@ -1,4 +1,3 @@
-
 # Ejercicio-1 Linux y Automatización
 ## Un Portal DevOps para Explorar
 

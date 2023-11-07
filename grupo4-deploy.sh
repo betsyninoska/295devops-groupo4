@@ -145,7 +145,7 @@ fi #cierre condicional
 #use devopstravel;
 #select * from booking;
 
-#Revisar la ingesta de datos en la base de datos
+
 
 
 #echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
@@ -159,3 +159,15 @@ mysql -e
 use devopstravel;
 select * from booking;"
 #Revisar la ingesta de datos en la base de datos
+
+
+#echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
+#echo -e "\n${LBLUE} Volcando parte de la base de datos ...${NC}"
+# **PENDIENTE***Base de datos (Se debe automatizar que se pueda agregar el pass de la base de datos al momento de ejecutar el script asi evitamos que datos sensibles queden en el repositorio)
+#mysql
+#create database  devopstravel;
+#exit
+#mariadb -h localhost  -u root -P 3306  -p devopstravel < 295devops-groupo4/app-295devops-travel/database/devopstravel.sql
+mysql -e 
+use devopstravel;
+select * from booking;"
