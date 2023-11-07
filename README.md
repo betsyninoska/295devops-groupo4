@@ -1,6 +1,4 @@
-Por supuesto, aquí tienes un Markdown atractivo para tu lectura en español:
 
-```markdown
 # Ejercicio-1 Linux y Automatización
 ## Un Portal DevOps para Explorar
 
@@ -89,6 +87,3 @@ Este es el flujo que debe seguir el script:
 - [40 Comandos Básicos de Linux que Todo Usuario Debe Saber](https://www.hostinger.com/tutoriales/linux-commands)
 
 © por RoxsRoss 2023 | Todos los Derechos Reservados
-```
-
-Siéntete libre de personalizar este Markdown según tus necesidades.
