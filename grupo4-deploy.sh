@@ -55,8 +55,6 @@ else
       systemctl enable apache2
       mv /var/www/html/index.html /var/www/html/index.html.bkp
       echo -e "\n${LGREEN} Apache2 instalado ...${NC}"}
-
-
  fi
 
 echo -e "\n${LGREEN} Version php:${NC}"
@@ -86,7 +84,8 @@ if [ -d "$repo" ]; then
 else
     echo -e "\n${LYELLOW} Installing web ...${NC}"
     sleep 1
-    git clone -b app-295devops-travel https://github.com/betsyninoska/$repo.git
+    #git clone -b app-295devops-travel https://github.com/betsyninoska/$repo.git
+    git clone https://github.com/betsyninoska/$repo.git
     cp -r $repo/app-295devops-travel/* /var/www/html
 fi
 
