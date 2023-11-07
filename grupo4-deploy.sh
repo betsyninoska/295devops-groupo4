@@ -84,9 +84,9 @@ if [ -d "$repo" ]; then
 else
     echo -e "\n${LYELLOW} Installing web ...${NC}"
     sleep 1
-
     git clone  https://github.com/betsyninoska/$repo.git
-    cp -r $repo/app-295devops-travel /var/www/html
+    cp -r $repo/app-295devops-travel/* /var/www/html
+    sed -i 's/""/"codepass"/g' /var/www/html/config.php
 fi
 
 #Ajustar el config de php para que soporte los archivos dinamicos de php agregando index.php
@@ -127,9 +127,9 @@ else
     INSERT INTO user (user_id, username, email, password, regis_date) VALUES ("1", "user1", "test1@test.com", "$2y$10$Snp9TypJqAy8UcTE6Nf1Qu1JPB.eQnXv0xjJ3KkFg4QMyXlAF5TIW", "2023-09-22 16:30:08"),
     ("2", "user2", "test2@test.com", "$2y$10$nfrL4wW1OqwfUTOGQWmBCu1EamV8HxAsSVrLkRy1z6.SFy81kGjp.", "2023-10-05 01:23:37");
 EOF
-# echo -e "\n\033[33m Info sql generada\033[0m\n"
-# mysql < devopstravel.sql
- echo -e "\n\033[33m Info sql ejecutada\033[0m\n"
+echo -e "\n\033[33m Info sql generada\033[0m\n"
+mysql < devopstravel.sql
+echo -e "\n\033[33m Info sql ejecutada\033[0m\n"
     
 fi #cierre condicional
 
@@ -149,13 +149,18 @@ fi #cierre condicional
 
 
 #echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
-#echo -e "\n${LBLUE} Volcando parte de la base de datos ...${NC}"
+echo -e "\n${LBLUE} Volcando parte de la base de datos ...${NC}"
 # **PENDIENTE***Base de datos (Se debe automatizar que se pueda agregar el pass de la base de datos al momento de ejecutar el script asi evitamos que datos sensibles queden en el repositorio)
 #mysql
 #create database  devopstravel;
 #exit
 #mariadb -h localhost  -u root -P 3306  -p devopstravel < 295devops-groupo4/app-295devops-travel/database/devopstravel.sql
-mysql -e 
+mysql -e "
 use devopstravel;
 select * from booking;"
 #Revisar la ingesta de datos en la base de datos
+
+
+echo -e "\n${LBLUE} Reload Web ...${NC}"
+sleep 1
+systemctl reload apache2
