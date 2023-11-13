@@ -29,57 +29,60 @@ echo -e "\n${LGREEN} Actualizando servidor ${NC}"
 apt-get update
 echo -e "\n${LGREEN} El Servidor se encuentra Actualizado ...${NC}"
 
-
 # Instalando paquetes
-# curl
-if ! dpkg -s curl > /dev/null 2>&1; then
-    apt install curl -y 2>&1
-fi
 
-# Git
-if dpkg -s git > /dev/null 2>&1; then
-    echo "  *** Git installed ***"
-else
-    echo "installing Git..."
-    apt install git -y > /dev/null 2>&1
-    echo "  *** successful Installation ***"
-fi
+# variables
+PKG=(
+    apache2
+    git
+    curl
+    mariadb-server
+    php
+    libapache2-mod-php
+    php-mysql
+)
+
+for i in "${PKG[@]}"
+do
+    dpkg -s $i &> /dev/null
+    if [ $? -eq 0 ]; then
+        sleep 1
+        echo -e "\n${LGREEN}$i is already installed...${NC}"
+    else
+        echo -e "\n${LGREEN}$i instalando $i ${NC}"
+        apt install $i -y
+        if [ $? -ne 0 ]; then
+            echo -e "\n${LRED} Error installing $i ${NC}"
+            exit 1
+        else
+          echo -e "\n${LGREEN}$i Installed $i ${NC}"
+        fi
+
+    fi
+done
 
 
-#Mariadb
-if dpkg -s mariadb-server > /dev/null 2>&1; then
-    echo -e "\n${LBLUE}Mariadb se encuentra Actualizado ...${NC}"
-else
-    echo -e "\n${LYELLOW}instalando MARIA DB ...${NC}"
-    apt install -y mariadb-server
-    ###Iniciando la base de datos
-    systemctl start mariadb
-    systemctl enable mariadb
-    echo "  *** successful Installation ***"
- # Configuración de la base de datos
-    echo "  === Configurating Database ==="
+#Configuraciones
+
+#Base de datos
+systemctl start mariadb
+systemctl enable mariadb
+echo "  *** successful Installation ***"
+# Configuración de la base de datos
+echo "  === Configurating Database ==="
     mysql -e "CREATE DATABASE devopstravel;
     CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
     GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
     FLUSH PRIVILEGES;"
-fi    
 
 #Apache
+systemctl start apache2
+systemctl enable apache2
+mv /var/www/html/index.html /var/www/html/index.html.bkp
+# Ajustar la configuración de PHP para admitir archivos dinámicos
+sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/' /etc/apache2/mods-enabled/dir.conf
+echo -e "\n${LGREEN} Apache2 configurado ...${NC}"}
 
-if dpkg -s apache2 > /dev/null 2>&1; then
-      echo -e "\n${LGREEN} El Apache2 se encuentra ya instalado ...${NC}"
-else
-      echo -e "\n${LYELLOW} Instalando apache2 ...${NC}"
-      apt install -y apache2
-      #php
-      apt install -y php libapache2-mod-php php-mysql
-      systemctl start apache2
-      systemctl enable apache2
-      mv /var/www/html/index.html /var/www/html/index.html.bkp
-      # Ajustar la configuración de PHP para admitir archivos dinámicos
-      sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/' /etc/apache2/mods-enabled/dir.conf
-      echo -e "\n${LGREEN} Apache2 instalado ...${NC}"}
- fi
 
 echo -e "\n${LGREEN} Version php:${NC}"
 php -version | head -n 1
