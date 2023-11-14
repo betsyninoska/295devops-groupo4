@@ -4,9 +4,12 @@
 echo "Iniciando"
 
 #Variables
-#repo="app-295devops-travel"
-repo="295devops-groupo4"
+#MAIN="/root/BootCamp-DevOps-roxsross"
+REPO="bootcamp-devops-2023"
+BRANCH="clase2-linux-bash"
+APP="app-295devops-travel"
 USERID=$(id -u)
+
 #colores
 LRED='\033[1;31m'
 LGREEN='\033[1;32m'
@@ -74,6 +77,8 @@ echo "  === Configurating Database ==="
     CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
     GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
     FLUSH PRIVILEGES;"
+# Injección de primeros datos
+mysql <  $PWD/$REPO/$APP/database/devopstravel.sql
 
 #Apache
 systemctl start apache2
@@ -90,13 +95,6 @@ php -version | head -n 1
 
 
 ##################################STAGE 2: [Build]######################
-
-#MAIN="/root/BootCamp-DevOps-roxsross"
-REPO="bootcamp-devops-2023"
-BRANCH="clase2-linux-bash"
-APP="app-295devops-travel"
-
-
 # Test de Repo
 if test -d "$PWD/$REPO"; then
     cd $PWD/$REPO
@@ -104,8 +102,6 @@ if test -d "$PWD/$REPO"; then
 else
     sleep 1
     git clone -b $BRANCH https://github.com/roxsross/$REPO.git
-    # Injección de primeros datos
-    mysql <  $PWD/$REPO/$APP/database/devopstravel.sql
 fi
 
 
