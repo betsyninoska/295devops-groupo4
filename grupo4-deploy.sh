@@ -78,7 +78,7 @@ echo "  === Configurating Database ==="
     GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
     FLUSH PRIVILEGES;"
 # Injección de primeros datos
-mysql <  $PWD/$REPO/$APP/database/devopstravel.sql
+mysql <  $PWD/$APP/database/devopstravel.sql
 
 #Apache
 systemctl start apache2
