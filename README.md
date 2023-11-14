@@ -85,4 +85,19 @@ Este es el flujo que debe seguir el script:
 - [Comando `sed` de Linux: Usos y Ejemplos](https://www.hostinger.com/tutoriales/el-comando-sed-de-linux-usos-y-ejemplos)
 - [40 Comandos Básicos de Linux que Todo Usuario Debe Saber](https://www.hostinger.com/tutoriales/linux-commands)
 
-© por RoxsRoss 2023 | Todos los Derechos Reservados
+
+# Resolucion
+
+# Clonar repo de desafios y ejercicios
+- `git clone https://github.com/betsyninoska/295devops-group4.git`
+
+# Reto 1: app-295devops-travel
+- `cd 295devops-groupo4`
+- `chmod +x grupo4-deploy.sh `
+- `./grupo4-deploy.sh`
+
+- Ir a Traffic/Ports -> port 80
+
+![](/img/trafficport.png) 
+
+
