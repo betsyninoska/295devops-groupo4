@@ -98,10 +98,15 @@ build(){
       git pull
   else
       sleep 1
-      git clone -b $BRANCH https://github.com/roxsross/$REPO.git
+      #git clone -b $BRANCH https://github.com/roxsross/$REPO.git
+      # Clonar el repositorio desde GitHub
+      git clone https://github.com/roxsross/bootcamp-devops-2023.git
+
+      # 2. Desplazarse al repositorio y cambiar a la rama 'clase2-linux-bash'
+     cd bootcamp-devops-2023
   fi
 
-
+git checkout clase2-linux-bash
 
   # Copiando archivos
   cd $REPO
@@ -130,8 +135,9 @@ deploy(){
 
   echo -e "\n${LBLUE} Reload Web ...${NC}"
   sleep 1
-  systemctl reload apache2
-  #echo -e "\n${LBLUE} Sitio desplegado ...${NC}"
+  #systemctl reload apache2
+  
+#echo -e "\n${LBLUE} Sitio desplegado ...${NC}"
 
   app_status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/index.php)
 
@@ -158,6 +164,7 @@ notify() {
     fi
 
     # Cambia al directorio del repositorio
+    echo "$1"    
     cd "$1"
 
     # Obtiene el nombre del repositorio
@@ -168,7 +175,12 @@ notify() {
     # Realiza una solicitud HTTP GET a la URL
     HTTP_STATUS=$(curl -Is "$WEB_URL" | head -n 1)
 
-    # Verifica si la respuesta es 200 OK (puedes ajustar esto según tus necesidades)
+
+echo "REPO_NAME $REPO_NAME"
+echo "REPO_URL $REPO_URL"
+echo "WEB_URL $WEB_URL="
+echo "curl -Is $WEB_URL | head -n 1"
+
     if [[ "$HTTP_STATUS" == "200 OK" ]]; then
         # Obtén información del repositorio
         DEPLOYMENT_INFO2="Despliegue del repositorio $REPO_NAME: "
@@ -198,6 +210,6 @@ else
   init
   build
   deploy
-  notify "https://github.com/betsyninoska/$REPOGRUPO4"
+  notify "/root/295devops-groupo4/bootcamp-devops-2023"
 fi
 
