@@ -101,8 +101,7 @@ init(){
 build(){
   # Test de Repo
   if test -d "$PWD/$REPO"; then
-     # cd $PWD/$REPO
-      cd bootcamp-devops-2023
+      cd $REPO
       git pull
   else
       sleep 1
@@ -111,21 +110,20 @@ build(){
       git clone https://github.com/roxsross/bootcamp-devops-2023.git
 
       # 2. Desplazarse al repositorio y cambiar a la rama 'clase2-linux-bash'
-     cd bootcamp-devops-2023
+     cd $REPO
   fi
 
-git checkout clase2-linux-bash
+  git checkout clase2-linux-bash
 
   # Copiando archivos
-  cp -r $REPO/app-295devops-travel/* /var/www/html  
+  cp -r app-295devops-travel/* /var/www/html 
   sleep 5
   sed -i 's/""/"codepass"/g' /var/www/html/config.php
 
   # Test de codigo
   if test -f "/var/www/html/index.php"; then
       echo "  "
-      echo "  === The code was copied ==="
-
+      echo -e "\n${LBLUE} Fuentes copiadas ...${NC}"
   fi
 
   #echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
@@ -142,20 +140,9 @@ git checkout clase2-linux-bash
 ##################################STAGE 3: [Deploy]######################
 deploy(){
 
-  echo -e "\n${LBLUE} Reload Web ...${NC}"
-  sleep 1
-  #systemctl reload apache2
   
-#echo -e "\n${LBLUE} Sitio desplegado ...${NC}"
-
+  echo -e "\n${LBLUE} Sitio desplegado ...${NC}"
   app_status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/index.php)
-
-  if [ $app_status -eq 200 ]; then
-    echo "La aplicacion esta funcional"
-  else
-    echo "La aplicacion no esta lista"
-    exit 1
-  fi
 
 
 }
@@ -173,7 +160,6 @@ notify() {
     fi
 
     # Cambia al directorio del repositorio
-    echo "$1"    
     cd "$1"
 
     # Obtiene el nombre del repositorio
@@ -184,31 +170,26 @@ notify() {
     # Realiza una solicitud HTTP GET a la URL
     HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$WEB_URL")
 
-echo "REPO_NAME $REPO_NAME"
-echo "REPO_URL $REPO_URL"
-echo "WEB_URL $WEB_URL"
-echo "curl -Is $WEB_URL | head -n 1"
 
-    #if [[ "$HTTP_STATUS" == "200 OK" ]]; then
     if [ $app_status -eq 200 ]; then
         # Obtén información del repositorio
         DEPLOYMENT_INFO2="Despliegue del repositorio $REPO_NAME: "
         DEPLOYMENT_INFO="La página web $WEB_URL está en línea."
+        GRUPO="Equipo 4"        
         COMMIT="Commit: $(git rev-parse --short HEAD)"
         AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
         DESCRIPTION="Descripción: $(git log -1 --pretty=format:'%s')"
+        echo -e "\n${LGREEN}$i La aplicacion esta funcional ${NC}"
     else
         DEPLOYMENT_INFO="La página web $WEB_URL no está en línea."
         GRUPO="Equipo 4"
         COMMIT="Commit: $(git rev-parse --short HEAD)"
         AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
         DESCRIPTION="Descripción: $(git log -1 --pretty=format:'%s')"
-        MESSAGE="$AUTHOR\n$COMMIT\n$DESCRIPTION\n$GRUPO\n$DEPLOYMENT_INFO"
-        echo "$AUTHOR\n$COMMIT\n$DESCRIPTION\n$GRUPO\n$DEPLOYMENT_INFO"
+        echo -e "\n${LRED}$i La aplicacion no esta lista ${NC}"
     fi
 
-    # Construye el mensaje
-    MESSAGE="$DEPLOYMENT_INFO2\n$DEPLOYMENT_INFO\n$COMMIT\n$AUTHOR\n$REPO_URL\n$DESCRIPTION"
+    MESSAGE="$DEPLOYMENT_INFO2\n$DEPLOYMENT_INFO\n$COMMIT\n$AUTHOR\n$GRUPO\n$REPO_URL\n$DESCRIPTION"
 
     # Envía el mensaje a Discord utilizando la API de Discord
     curl -X POST -H "Content-Type: application/json" \
