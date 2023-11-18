@@ -189,7 +189,8 @@ echo "REPO_URL $REPO_URL"
 echo "WEB_URL $WEB_URL"
 echo "curl -Is $WEB_URL | head -n 1"
 
-    if [[ "$HTTP_STATUS" == "200 OK" ]]; then
+    #if [[ "$HTTP_STATUS" == "200 OK" ]]; then
+    if [ $app_status -eq 200 ]; then
         # Obtén información del repositorio
         DEPLOYMENT_INFO2="Despliegue del repositorio $REPO_NAME: "
         DEPLOYMENT_INFO="La página web $WEB_URL está en línea."
