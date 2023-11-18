@@ -68,13 +68,19 @@ init(){
   systemctl enable mariadb
   echo "  *** successful Installation ***"
   # Configuración de la base de datos
+  database_check=$(mysql -e "SHOW DATABASES LIKE 'devopstravel'")
+  if [ -z "$database_check" ]; then
   echo "  === Configurating Database ==="
       mysql -e "CREATE DATABASE devopstravel;
       CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
       GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
       FLUSH PRIVILEGES;"
-  # Injección de primeros datos
-  mysql <  $PWD/$APP/database/devopstravel.sql
+      # Injección de primeros datos
+       mysql <  $PWD/$APP/database/devopstravel.sql
+  else
+      echo -e "\n${LGREEN}$i La base de datos 'devopstravel' ya existe ${NC}"
+
+  fi
 
   #Apache
   systemctl start apache2
@@ -87,14 +93,16 @@ init(){
 
   echo -e "\n${LGREEN} Version php:${NC}"
   php -version | head -n 1
-
+  #Reload to get changes
+  sudo systemctl reload apache2 >/dev/null 2>&1
 }
 
 ##################################STAGE 2: [Build]######################
 build(){
   # Test de Repo
   if test -d "$PWD/$REPO"; then
-      cd $PWD/$REPO
+     # cd $PWD/$REPO
+      cd bootcamp-devops-2023
       git pull
   else
       sleep 1
@@ -109,9 +117,10 @@ build(){
 git checkout clase2-linux-bash
 
   # Copiando archivos
-  cd $REPO
-  cp -r $APP/* /var/www/html
+  cp -r $REPO/app-295devops-travel/* /var/www/html  
+  sleep 5
   sed -i 's/""/"codepass"/g' /var/www/html/config.php
+
   # Test de codigo
   if test -f "/var/www/html/index.php"; then
       echo "  "
@@ -171,14 +180,13 @@ notify() {
     REPO_NAME=$(basename $(git rev-parse --show-toplevel))
     # Obtiene la URL remota del repositorio
     REPO_URL=$(git remote get-url origin)
-    WEB_URL="localhost"
+    WEB_URL="http://localhost/index.php"    
     # Realiza una solicitud HTTP GET a la URL
-    HTTP_STATUS=$(curl -Is "$WEB_URL" | head -n 1)
-
+    HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$WEB_URL")
 
 echo "REPO_NAME $REPO_NAME"
 echo "REPO_URL $REPO_URL"
-echo "WEB_URL $WEB_URL="
+echo "WEB_URL $WEB_URL"
 echo "curl -Is $WEB_URL | head -n 1"
 
     if [[ "$HTTP_STATUS" == "200 OK" ]]; then
@@ -190,6 +198,12 @@ echo "curl -Is $WEB_URL | head -n 1"
         DESCRIPTION="Descripción: $(git log -1 --pretty=format:'%s')"
     else
         DEPLOYMENT_INFO="La página web $WEB_URL no está en línea."
+        GRUPO="Equipo 4"
+        COMMIT="Commit: $(git rev-parse --short HEAD)"
+        AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
+        DESCRIPTION="Descripción: $(git log -1 --pretty=format:'%s')"
+        MESSAGE="$AUTHOR\n$COMMIT\n$DESCRIPTION\n$GRUPO\n$DEPLOYMENT_INFO"
+        echo "$AUTHOR\n$COMMIT\n$DESCRIPTION\n$GRUPO\n$DEPLOYMENT_INFO"
     fi
 
     # Construye el mensaje
