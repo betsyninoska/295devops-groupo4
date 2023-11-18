@@ -1,12 +1,8 @@
 #!/bin/bash
 
 ##################################STAGE 1: [Init]######################
-echo "Iniciando"
-
-#Variables
-#MAIN="/root/BootCamp-DevOps-roxsross"
+#variables
 REPO="bootcamp-devops-2023"
-REPOGRUPO4="295devops-groupo4"
 BRANCH="clase2-linux-bash"
 APP="app-295devops-travel"
 USERID=$(id -u)
@@ -29,8 +25,6 @@ init(){
   echo -e "\n${LGREEN} El Servidor se encuentra Actualizado ...${NC}"
 
   # Instalando paquetes
-
-  # variables
   PKG=(
       apache2
       git
@@ -94,7 +88,7 @@ init(){
   echo -e "\n${LGREEN} Version php:${NC}"
   php -version | head -n 1
   #Reload to get changes
-  sudo systemctl reload apache2 >/dev/null 2>&1
+  #sudo systemctl reload apache2 >/dev/null 2>&1
 }
 
 ##################################STAGE 2: [Build]######################
@@ -127,12 +121,10 @@ build(){
   fi
 
   #echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
-  echo -e "\n${LBLUE} Volcando parte de la base de datos ...${NC}"
+  echo -e "\n${LBLUE} Volcando y verificacion de la base de datos ...${NC}"
   mysql -e "
   use devopstravel;
   select * from booking;"
-  #Revisar la ingesta de datos en la base de datos
-  curl localhost
 
 }
 
@@ -142,9 +134,11 @@ deploy(){
 
   
   echo -e "\n${LBLUE} Sitio desplegado ...${NC}"
-  app_status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/index.php)
+  #Reload to get changes
+  sudo systemctl reload apache2 >/dev/null 2>&1
 
-
+  #Verificar la aplicacion
+  curl localhost
 }
 
 ##################################STAGE 4: [Notify]######################
@@ -171,7 +165,7 @@ notify() {
     HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$WEB_URL")
 
 
-    if [ $app_status -eq 200 ]; then
+    if [ "$HTTP_STATUS" -eq 200 ]; then
         # Obtén información del repositorio
         DEPLOYMENT_INFO2="Despliegue del repositorio $REPO_NAME: "
         DEPLOYMENT_INFO="La página web $WEB_URL está en línea."
