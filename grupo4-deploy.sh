@@ -70,10 +70,9 @@ init(){
       GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
       FLUSH PRIVILEGES;"
       # Injección de primeros datos
-       mysql <  $PWD/$APP/database/devopstravel.sql
+       mysql <  $PWD/$REPO/$APP/database/devopstravel.sql
   else
       echo -e "\n${LGREEN}$i La base de datos 'devopstravel' ya existe ${NC}"
-
   fi
 
   #Apache
