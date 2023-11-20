@@ -106,6 +106,7 @@ ETAPA 1: [Inicio del despliegue...]
 - Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
 - Validación de la instalación de paquetes para evitar reinstalaciones.
 - Habilitar y probar la instalación de paquetes
+
 Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen:
     [![rt02.jpg](https://i.postimg.cc/kGBLHZtx/rt02.jpg)](https://postimg.cc/y3CfgLjd)
 
