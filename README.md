@@ -141,6 +141,6 @@ Esta etapa fue resuelta como se mestra en la imagen:
 
 [![discordr4.jpg](https://i.postimg.cc/c4Lt6Gps/discordr4.jpg)](https://postimg.cc/7bjZQdPc)
 
-A continuacón ofrecemos un video del despliegue para su evaluación:
+A continuación ofrecemos un vídeo del despliegue para su evaluación:
 
 [![Video](https://img.youtube.com/vi/DyFKrXouzLE/maxresdefault.jpg)](https://youtu.be/DyFKrXouzLE)
