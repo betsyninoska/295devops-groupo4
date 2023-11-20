@@ -20,9 +20,9 @@ echo  -e "\n${LGREEN} ######################Inicio de Automatizacion############
 echo  -e "\n${LGREEN} ########################################################################${NC}"
 
 init(){
-  echo -e "\n${LGREEN} Actualizando servidor ${NC}"
+  echo -e "\n${LGREEN}Actualizando servidor ${NC}"
   apt-get update
-  echo -e "\n${LGREEN} El Servidor se encuentra Actualizado ...${NC}"
+  echo -e "\n${LGREEN}El Servidor se encuentra Actualizado ...${NC}"
 
   # Instalando paquetes
   PKG=(
@@ -53,41 +53,22 @@ init(){
 
       fi
   done
-
-
-  #Configuraciones
-
-  #Base de datos
+  echo -e "\n${LGREEN} *** successful Installation *** ${NC}"
+  #Mariadb  
   systemctl start mariadb
   systemctl enable mariadb
-  echo "  *** successful Installation ***"
-  # Configuraci贸n de la base de datos
-  database_check=$(mysql -e "SHOW DATABASES LIKE 'devopstravel'")
-  if [ -z "$database_check" ]; then
-  echo "  === Configurating Database ==="
-      mysql -e "CREATE DATABASE devopstravel;
-      CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
-      GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
-      FLUSH PRIVILEGES;"
-      # Injecci贸n de primeros datos
-       mysql <  $PWD/$REPO/$APP/database/devopstravel.sql
-  else
-      echo -e "\n${LGREEN}$i La base de datos 'devopstravel' ya existe ${NC}"
-  fi
-
   #Apache
   systemctl start apache2
   systemctl enable apache2
+  
   mv /var/www/html/index.html /var/www/html/index.html.bkp
   # Ajustar la configuraci贸n de PHP para admitir archivos din谩micos
   sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/' /etc/apache2/mods-enabled/dir.conf
   echo -e "\n${LGREEN} Apache2 configurado ...${NC}"
 
 
-  echo -e "\n${LGREEN} Version php:${NC}"
+  echo -e "\n${LGREEN}Version php:${NC}"
   php -version | head -n 1
-  #Reload to get changes
-  #sudo systemctl reload apache2 >/dev/null 2>&1
 }
 
 ##################################STAGE 2: [Build]######################
@@ -119,11 +100,22 @@ build(){
       echo -e "\n${LBLUE} Fuentes copiadas ...${NC}"
   fi
 
-  #echo -e "\n${LBLUE}Configurando base de datos ...${NC}"
-  echo -e "\n${LBLUE} Volcando y verificacion de la base de datos ...${NC}"
-  mysql -e "
+  # Configuraci贸n de la base de datos
+  database_check=$(mysql -e "SHOW DATABASES LIKE 'devopstravel'")
+  if [ -z "$database_check" ]; then
+      echo -e "\n${LBLUE} Volcando y verificacion de la base de datos ...${NC}"      
+      mysql -e "CREATE DATABASE devopstravel;
+      CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
+      GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
+      FLUSH PRIVILEGES;"
+      mysql <  $PWD/$APP/database/devopstravel.sql
+  else
+      echo -e "\n${LGREEN}$i La base de datos 'devopstravel' ya existe ${NC}"
+  fi
+  #Verificaci胣 de los datos
+  mysql -e  "\n${LBLUE}
   use devopstravel;
-  select * from booking;"
+  select * from booking;  ${NC}"
 
 }
 
@@ -142,7 +134,7 @@ deploy(){
 
 ##################################STAGE 4: [Notify]######################
 notify() {
-    echo -e "\n${LGREEN}STAGE 4: [NOTIFY]${NC}"
+    echo -e "\n${LGREEN}STAGE 4ii: [NOTIFY]${NC}"
     # Configura el token de acceso de tu bot de Discord
     DISCORD="https://discord.com/api/webhooks/1169002249939329156/7MOorDwzym-yBUs3gp0k5q7HyA42M5eYjfjpZgEwmAx1vVVcLgnlSh4TmtqZqCtbupov"
 
