@@ -100,7 +100,7 @@ Este es el flujo que debe seguir el script:
 
 ![](/img/trafficport.png) 
 
-# Despliegue de las Etapas del Reto - Resolucón del ejercicio
+# Despliegue de las Etapas del Reto - Resolución del ejercicio
 
 ETAPA 1: [Inicio del despliegue...]
 - Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
