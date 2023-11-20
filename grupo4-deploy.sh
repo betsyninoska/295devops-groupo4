@@ -113,9 +113,9 @@ build(){
       echo -e "\n${LGREEN}$i La base de datos 'devopstravel' ya existe ${NC}"
   fi
   #Verificaci√n de los datos
-  mysql -e  "\n${LBLUE}
+  mysql -e  "
   use devopstravel;
-  select * from booking;  ${NC}"
+  select * from booking; "
 
 }
 
