@@ -118,12 +118,14 @@ Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen
 - Probar la existencia del código de la aplicación.
 - Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
 - Probar la compatibilidad (por ejemplo, http://localhost/info.php).
+
     Se ofrece a continuación una imagen de como se resolvieron los requisitos en esta etapa:
     [![rt03.jpg](https://i.postimg.cc/0j3kb7sq/rt03.jpg)](https://postimg.cc/D4rkNJ0C)
 ### ETAPA 3: [Despliegue final]
 
 - Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
 - La aplicación está disponible para los usuarios finales.
+
 A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
 [![rt04.jpg](https://i.postimg.cc/pLSMtKHf/rt04.jpg)](https://postimg.cc/21nKQb3y)
 
@@ -131,6 +133,7 @@ A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
 
 - Informar sobre el estado de la aplicación, ya sea que esté funcionando correctamente o tenga problemas, a través de un webhook en el canal de Discord #deploy-bootcamp.
 - La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
+
 Esta etapa fue resuelta como se mestra en la imagen:
 [![rt05.jpg](https://i.postimg.cc/N0YNrMBy/rt05.jpg)](https://postimg.cc/FYWbMhfm)
 
