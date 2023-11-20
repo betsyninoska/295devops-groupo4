@@ -139,4 +139,4 @@ Esta etapa fue resuelta como se mestra en la imagen:
 
     La notificacíon de envío a Discord se muestra a continuación:
 
-    [![discordr4.jpg](https://i.postimg.cc/c4Lt6Gps/discordr4.jpg)](https://postimg.cc/7bjZQdPc)
+[![discordr4.jpg](https://i.postimg.cc/c4Lt6Gps/discordr4.jpg)](https://postimg.cc/7bjZQdPc)
