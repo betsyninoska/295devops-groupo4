@@ -86,7 +86,7 @@ Este es el flujo que debe seguir el script:
 - [40 Comandos Básicos de Linux que Todo Usuario Debe Saber](https://www.hostinger.com/tutoriales/linux-commands)
 
 
-# Resolucion
+# Resolución del reto
 
 # Clonar repo de desafios y ejercicios
 - `git clone https://github.com/betsyninoska/295devops-group4.git`
