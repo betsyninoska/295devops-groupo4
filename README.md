@@ -143,4 +143,4 @@ Esta etapa fue resuelta como se mestra en la imagen:
 
 A continuación ofrecemos un vídeo del despliegue para su evaluación:
 
-[![Video](https://img.youtube.com/vi/DyFKrXouzLE/maxresdefault.jpg)](https://youtu.be/DyFKrXouzLE)
+[![Video](https://img.youtube.com/vi/v0zvGUrv3KY/maxresdefault.jpg)](https://youtu.be/v0zvGUrv3KY)
