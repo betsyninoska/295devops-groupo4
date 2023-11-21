@@ -86,7 +86,7 @@ Este es el flujo que debe seguir el script:
 - [40 Comandos Básicos de Linux que Todo Usuario Debe Saber](https://www.hostinger.com/tutoriales/linux-commands)
 
 
-# Resolucion
+# Resolución del reto
 
 # Clonar repo de desafios y ejercicios
 - `git clone https://github.com/betsyninoska/295devops-group4.git`
@@ -100,4 +100,47 @@ Este es el flujo que debe seguir el script:
 
 ![](/img/trafficport.png) 
 
+# Despliegue de las Etapas del Reto - Resolución del ejercicio
 
+ETAPA 1: [Inicio del despliegue...]
+- Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
+- Validación de la instalación de paquetes para evitar reinstalaciones.
+- Habilitar y probar la instalación de paquetes
+
+Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen:
+    [![rt02.jpg](https://i.postimg.cc/kGBLHZtx/rt02.jpg)](https://postimg.cc/y3CfgLjd)
+
+### ETAPA 2: [Construcción - Build - Despliegue]
+
+- Clonar el repositorio de la aplicación.
+- Comprobar si el repositorio de la aplicación no existe; si es así, realizar un git clone. Si existe, realizar un git pull.
+- Mover al directorio donde se almacenan los archivos de configuración de Apache (/var/www/html/).
+- Probar la existencia del código de la aplicación.
+- Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
+- Probar la compatibilidad (por ejemplo, http://localhost/info.php).
+
+    Se ofrece a continuación una imagen de como se resolvieron los requisitos en esta etapa:
+    [![rt03.jpg](https://i.postimg.cc/0j3kb7sq/rt03.jpg)](https://postimg.cc/D4rkNJ0C)
+### ETAPA 3: [Despliegue final]
+
+- Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
+- La aplicación está disponible para los usuarios finales.
+
+A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
+[![rt04.jpg](https://i.postimg.cc/pLSMtKHf/rt04.jpg)](https://postimg.cc/21nKQb3y)
+
+### ETAPA 4: [Notificación]
+
+- Informar sobre el estado de la aplicación, ya sea que esté funcionando correctamente o tenga problemas, a través de un webhook en el canal de Discord #deploy-bootcamp.
+- La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
+
+Esta etapa fue resuelta como se mestra en la imagen:
+[![rt05.jpg](https://i.postimg.cc/N0YNrMBy/rt05.jpg)](https://postimg.cc/FYWbMhfm)
+
+    La notificacíon de envío a Discord se muestra a continuación:
+
+[![discordr4.jpg](https://i.postimg.cc/c4Lt6Gps/discordr4.jpg)](https://postimg.cc/7bjZQdPc)
+
+A continuación ofrecemos un vídeo del despliegue para su evaluación:
+
+[![Video](https://img.youtube.com/vi/v0zvGUrv3KY/maxresdefault.jpg)](https://youtu.be/v0zvGUrv3KY)
