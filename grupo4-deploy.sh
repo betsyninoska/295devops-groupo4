@@ -1,143 +1,94 @@
 #!/bin/bash
+#Programa para mostrar menu de opciones
+#Autor: Juan M Parra D.
 
-##################################STAGE 1: [Init]######################
-#variables
+#Variable
 REPO="bootcamp-devops-2023"
-BRANCH="clase2-linux-bash"
-APP="app-295devops-travel"
-USERID=$(id -u)
-
-#colores
+BRANCH="ejercicio2-dockeriza"
+FOLDER="295devops-travel-lamp"
+#Colores
 LRED='\033[1;31m'
 LGREEN='\033[1;32m'
 NC='\033[0m'
 LBLUE='\033[0;34m'
 LYELLOW='\033[1;33m'
 
-
-echo  -e "\n${LGREEN} ########################################################################${NC}"
-echo  -e "\n${LGREEN} ######################Inicio de Automatizacion#########################${NC}"
-echo  -e "\n${LGREEN} ########################################################################${NC}"
-
 init(){
-  echo -e "\n${LGREEN}Actualizando servidor ${NC}"
-  apt-get update
-  echo -e "\n${LGREEN}El Servidor se encuentra Actualizado ...${NC}"
+    echo -e "\n${LGREEN}STAGE 1: [INIT]${NC}"
 
-  # Instalando paquetes
-  PKG=(
-      apache2
-      git
-      curl
-      mariadb-server
-      php
-      libapache2-mod-php
-      php-mysql
-  )
+#UPDATE
+apt-get update
+echo -e "\n${LGREEN}El Servidor se encuentra Actualizado...${NC}"
 
-  for i in "${PKG[@]}"
-  do
-      dpkg -s $i &> /dev/null
-      if [ $? -eq 0 ]; then
-          sleep 1
-          echo -e "\n${LGREEN}$i is already installed...${NC}"
-      else
-          echo -e "\n${LGREEN}$i instalando $i ${NC}"
-          apt install $i -y
-          if [ $? -ne 0 ]; then
-              echo -e "\n${LRED} Error installing $i ${NC}"
-              exit 1
-          else
-            echo -e "\n${LGREEN}$i Installed $i ${NC}"
-          fi
+#Instalación de Git
+apt install -y git 
+echo -e "\n${LYELLOW} instalando GIT... ${NC}"
 
-      fi
-  done
-  echo -e "\n${LGREEN} *** successful Installation *** ${NC}"
-  #Mariadb  
-  systemctl start mariadb
-  systemctl enable mariadb
-  #Apache
-  systemctl start apache2
-  systemctl enable apache2
-  
-  mv /var/www/html/index.html /var/www/html/index.html.bkp
-  # Ajustar la configuración de PHP para admitir archivos dinámicos
-  sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/' /etc/apache2/mods-enabled/dir.conf
-  echo -e "\n${LGREEN} Apache2 configurado ...${NC}"
-
-
-  echo -e "\n${LGREEN}Version php:${NC}"
-  php -version | head -n 1
+echo -e "\n${LGREEN}STAGE 1: Init Finalizado ${NC}"
+sleep 1
 }
 
-##################################STAGE 2: [Build]######################
 build(){
-  # Test de Repo
-  if test -d "$PWD/$REPO"; then
-      cd $REPO
-      git pull
-  else
-      sleep 1
-      #git clone -b $BRANCH https://github.com/roxsross/$REPO.git
-      # Clonar el repositorio desde GitHub
-      git clone https://github.com/roxsross/bootcamp-devops-2023.git
+    echo -e "\n${LGREEN}STAGE 2: [Build]${NC}"
 
-      # 2. Desplazarse al repositorio y cambiar a la rama 'clase2-linux-bash'
-     cd $REPO
-  fi
+if [ -d "${REPO}" ]; then
+    echo -e "\n${LBLUE}repositorio ya existe...${NC}"
+    rm -rf ${REPO}          
+fi
+echo -e "\n${LYELLOW}Instalando WEB...${NC}"
+sleep 1
+git clone https://github.com/roxsross/$REPO
+sleep 1
+cd $REPO
+git checkout $BRANCH
+sleep 1
 
-  git checkout clase2-linux-bash
+cd $FOLDER
 
-  # Copiando archivos
-  cp -r app-295devops-travel/* /var/www/html 
-  sleep 5
-  sed -i 's/""/"codepass"/g' /var/www/html/config.php
+sleep 1
 
-  # Test de codigo
-  if test -f "/var/www/html/index.php"; then
-      echo "  "
-      echo -e "\n${LBLUE} Fuentes copiadas ...${NC}"
-  fi
+#creando variables de entornos desde el script
+echo "MYSQL_PASSWORD=codepass" >> .env
+echo "MYSQL_ROOT_PASSWORD=Strongpassword@123" >> .env
+echo "DB_HOST=dbphp" >> .env
+echo "DB_PORT=3306" >> .env
+echo "MYSQL_DATABASE=devopstravel" >> .env
+echo "DB_USER=codeuser" >> .env
 
-  # Configuración de la base de datos
-  database_check=$(mysql -e "SHOW DATABASES LIKE 'devopstravel'")
-  if [ -z "$database_check" ]; then
-      echo -e "\n${LBLUE} Volcando y verificacion de la base de datos ...${NC}"      
-      mysql -e "CREATE DATABASE devopstravel;
-      CREATE USER 'codeuser'@'localhost' IDENTIFIED BY 'codepass';
-      GRANT ALL PRIVILEGES ON *.* TO 'codeuser'@'localhost';
-      FLUSH PRIVILEGES;"
-      mysql <  $PWD/$APP/database/devopstravel.sql
-  else
-      echo -e "\n${LGREEN}$i La base de datos 'devopstravel' ya existe ${NC}"
-  fi
-  #Verificaci�n de los datos
-  mysql -e  "
-  use devopstravel;
-  select * from booking; "
+sed -i 's/"localhost"/getenv('DB_HOST')/g' config.php
+sed -i 's/"codeuser"/getenv('DB_USER')/g' config.php
+sed -i 's/""/getenv('MYSQL_PASSWORD')/g' config.php
+sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
+### Crear Dockerfile en . 
+echo -e "\n${LGREEN}Creando Dockerfile ${NC}"
+../../create_dockerfile.sh
+#creando Docker-Compose file
+echo -e "\n${LGREEN}Creando DockerCompose File ${NC}"
+../../create_docker_compose.sh
+
+echo -e "\n${LGREEN}STAGE 2: Build Finalizado ${NC}"
+sleep 3
 }
 
-
-##################################STAGE 3: [Deploy]######################
 deploy(){
+# Ejecutar Docker Compose
+docker-compose up -d
 
-  
-  echo -e "\n${LBLUE} Sitio desplegado ...${NC}"
-  #Reload to get changes
-  sudo systemctl reload apache2 >/dev/null 2>&1
+    sleep 1
+opts=("dbphp" "php" "phpmyadmin")
 
-  #Verificar la aplicacion
-  curl localhost
+# Iterate through each container in the array
+for container in "${opts[@]}"; do
+    status=$(docker inspect --format='{{json .State.Health.Status}}' "$container")
+    echo "Container: $container - Health Status: $status"
+done
 }
 
-##################################STAGE 4: [Notify]######################
 notify() {
-    echo -e "\n${LGREEN}STAGE 4ii: [NOTIFY]${NC}"
+    echo -e "\n${LGREEN}STAGE 4: [NOTIFY]${NC}"
     # Configura el token de acceso de tu bot de Discord
-    DISCORD="https://discord.com/api/webhooks/1169002249939329156/7MOorDwzym-yBUs3gp0k5q7HyA42M5eYjfjpZgEwmAx1vVVcLgnlSh4TmtqZqCtbupov"
-
+    DISCORD="https://discord.com/api/webhooks/1154865920741752872/au1jkQ7v9LgQJ131qFnFqP-WWehD40poZJXRGEYUDErXHLQJ_BBszUFtVj8g3pu9bm7h"
     # Verifica si se proporcionó el argumento del directorio del repositorio
     if [ $# -ne 1 ]; then
         echo "Uso: $0 <ruta_al_repositorio>"
@@ -151,30 +102,24 @@ notify() {
     REPO_NAME=$(basename $(git rev-parse --show-toplevel))
     # Obtiene la URL remota del repositorio
     REPO_URL=$(git remote get-url origin)
-    WEB_URL="http://localhost/index.php"    
+    WEB_URL="localhost"
     # Realiza una solicitud HTTP GET a la URL
-    HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$WEB_URL")
+    HTTP_STATUS=$(curl -Is "$WEB_URL" | head -n 1)
 
-
-    if [ "$HTTP_STATUS" -eq 200 ]; then
+    # Verifica si la respuesta es 200 OK (puedes ajustar esto según tus necesidades)
+    if [[ "$HTTP_STATUS" == *"200 OK"* ]]; then
         # Obtén información del repositorio
         DEPLOYMENT_INFO2="Despliegue del repositorio $REPO_NAME: "
         DEPLOYMENT_INFO="La página web $WEB_URL está en línea."
-        GRUPO="Equipo 4"        
         COMMIT="Commit: $(git rev-parse --short HEAD)"
         AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
         DESCRIPTION="Descripción: $(git log -1 --pretty=format:'%s')"
-        echo -e "\n${LGREEN}$i La aplicacion esta funcional ${NC}"
     else
         DEPLOYMENT_INFO="La página web $WEB_URL no está en línea."
-        GRUPO="Equipo 4"
-        COMMIT="Commit: $(git rev-parse --short HEAD)"
-        AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
-        DESCRIPTION="Descripción: $(git log -1 --pretty=format:'%s')"
-        echo -e "\n${LRED}$i La aplicacion no esta lista ${NC}"
     fi
 
-    MESSAGE="$DEPLOYMENT_INFO2\n$DEPLOYMENT_INFO\n$COMMIT\n$AUTHOR\n$GRUPO\n$REPO_URL\n$DESCRIPTION"
+    # Construye el mensaje
+    MESSAGE="$DEPLOYMENT_INFO2\n$DEPLOYMENT_INFO\n$COMMIT\n$AUTHOR\n$REPO_URL\n$DESCRIPTION"
 
     # Envía el mensaje a Discord utilizando la API de Discord
     curl -X POST -H "Content-Type: application/json" \
@@ -183,14 +128,12 @@ notify() {
          }' "$DISCORD"
 }
 
-#Usuario Root solamente
 if [ $EUID != 0 ]; then
     echo -e "\n${LRED}You need to have root privileges to run this script.${NC}"
     exit 1
-else
-  init
-  build
-  deploy
-  notify "/root/295devops-groupo4/bootcamp-devops-2023"
+else 
+init
+build
+deploy
+notify "https://github.com/roxsross/$REPO"
 fi
-
