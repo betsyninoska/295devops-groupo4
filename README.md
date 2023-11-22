@@ -1,4 +1,4 @@
-# Ejercicio-1 Linux y Automatización
+# Ejercicio-1 Linux y Automatización - 
 ## Un Portal DevOps para Explorar
 
 Con el Equipo 295, la automatización dejará de ser manual, repetitiva y propensa a errores para convertirse en un proceso rápido y seguro.
