@@ -108,7 +108,7 @@ ETAPA 1: [Inicio del despliegue...]
 - Habilitar y probar la instalación de paquetes
 
 Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen:
-    [![rt02.jpg](https://i.postimg.cc/kGBLHZtx/rt02.jpg)](https://postimg.cc/y3CfgLjd)
+    [![rt001.jpg](https://i.postimg.cc/bvV8jVs7/rt001.jpg)](https://postimg.cc/kVSLQcNs)
 
 ### ETAPA 2: [Construcción - Build - Despliegue]
 
@@ -120,7 +120,8 @@ Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen
 - Probar la compatibilidad (por ejemplo, http://localhost/info.php).
 
     Se ofrece a continuación una imagen de como se resolvieron los requisitos en esta etapa:
-    [![rt03.jpg](https://i.postimg.cc/0j3kb7sq/rt03.jpg)](https://postimg.cc/D4rkNJ0C)
+    [![rt002.jpg](https://i.postimg.cc/FzmFGWzw/rt002.jpg)](https://postimg.cc/gXSP2KvK)
+    
 ### ETAPA 3: [Despliegue final]
 
 - Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
@@ -135,7 +136,7 @@ A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
 - La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
 
 Esta etapa fue resuelta como se mestra en la imagen:
-[![rt05.jpg](https://i.postimg.cc/N0YNrMBy/rt05.jpg)](https://postimg.cc/FYWbMhfm)
+[![rt005.jpg](https://i.postimg.cc/FHQtSdfn/rt005.jpg)](https://postimg.cc/N5bPq0k1)
 
     La notificacíon de envío a Discord se muestra a continuación:
 
