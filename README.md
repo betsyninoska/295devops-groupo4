@@ -116,6 +116,7 @@ Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen
 - Comprobar si el repositorio de la aplicación no existe; si es así, realizar un git clone. Si existe, realizar un git pull.
 - Mover al directorio donde se almacenan los archivos de configuración de Apache (/var/www/html/).
 - Probar la existencia del código de la aplicación.
+- Realizar la creación de la base de datos en MariaDb y la importación de los datos.
 - Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
 - Probar la compatibilidad (por ejemplo, http://localhost/info.php).
 
@@ -128,7 +129,7 @@ Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen
 - La aplicación está disponible para los usuarios finales.
 
 A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
-[![rt04.jpg](https://i.postimg.cc/pLSMtKHf/rt04.jpg)](https://postimg.cc/21nKQb3y)
+[![rt004.jpg](https://i.postimg.cc/fTR0CTVz/rt004.jpg)](https://postimg.cc/kDL4XCNz)
 
 ### ETAPA 4: [Notificación]
 
