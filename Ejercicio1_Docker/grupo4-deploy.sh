@@ -55,14 +55,11 @@ echo "DB_PORT=3306" >> .env
 echo "MYSQL_DATABASE=devopstravel" >> .env
 echo "DB_USER=codeuser" >> .env
 
-<<<<<<< HEAD
 #sed -i 's/"localhost"/getenv('DB_HOST')/g' config.php
 #sed -i 's/"codeuser"/getenv('DB_USER')/g' config.php
 #sed -i 's/""/getenv('MYSQL_PASSWORD')/g' config.php
 #sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
-=======
->>>>>>> 1f42f4c37a9e20639829180c3505366aae3da2fc
 sed -i 's/"localhost"/getenv('\''DB_HOST'\'')/g' config.php
 sed -i 's/"codeuser"/getenv('\''DB_USER'\'')/g' config.php
 sed -i 's/""/getenv('\''MYSQL_PASSWORD'\'')/g' config.php
