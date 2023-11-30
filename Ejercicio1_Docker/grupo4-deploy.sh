@@ -55,10 +55,10 @@ echo "DB_PORT=3306" >> .env
 echo "MYSQL_DATABASE=devopstravel" >> .env
 echo "DB_USER=codeuser" >> .env
 
-sed -i 's/"localhost"/getenv('DB_HOST')/g' config.php
-sed -i 's/"codeuser"/getenv('DB_USER')/g' config.php
-sed -i 's/""/getenv('MYSQL_PASSWORD')/g' config.php
-sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
+sed -i 's/"localhost"/getenv('\''DB_HOST'\'')/g' config.php
+sed -i 's/"codeuser"/getenv('\''DB_USER'\'')/g' config.php
+sed -i 's/""/getenv('\''MYSQL_PASSWORD'\'')/g' config.php
+sed -i 's/"devopstravel"/getenv('\''MYSQL_DATABASE'\'')/g' config.php
 
 ### Crear Dockerfile en . 
 echo -e "\n${LGREEN}Creando Dockerfile ${NC}"
@@ -118,7 +118,7 @@ notify() {
         DESCRIPTION="Descripcion: $(git log -1 --pretty=format:'%s')"
         echo -e "\n${LGREEN}$i La aplicacion esta funcional ${NC}"
     else
-        DEPLOYMENT_INFO="La pa�gina web $WEB_URL no estÃ¡ en lÃ­nea."
+        DEPLOYMENT_INFO="La pa�gina web $WEB_URL no estÃ¡ en lÃ­nea."
         GRUPO="Equipo 4"
         COMMIT="Commit: $(git rev-parse --short HEAD)"
         AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
