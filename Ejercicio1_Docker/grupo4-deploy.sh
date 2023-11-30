@@ -60,6 +60,7 @@ echo "DB_USER=codeuser" >> .env
 #sed -i 's/""/getenv('MYSQL_PASSWORD')/g' config.php
 #sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
+#Simples quotes
 sed -i 's/"localhost"/getenv('\''DB_HOST'\'')/g' config.php
 sed -i 's/"codeuser"/getenv('\''DB_USER'\'')/g' config.php
 sed -i 's/""/getenv('\''MYSQL_PASSWORD'\'')/g' config.php
