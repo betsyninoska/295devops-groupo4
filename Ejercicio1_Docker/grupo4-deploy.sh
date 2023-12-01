@@ -9,9 +9,9 @@ FOLDER="295devops-travel-lamp"
 
 
 #Variables proyecto para desplegar
-PROYECTO='/root/295devops-groupo4/Ejercicio1_Docker'
-DOCKERFILE=$PROYECTO'/create_docker_compose.sh'
-DOCKERCOMPOSE=$PROYECTO'create_dockerfile.sh'
+PROYECTO='/root/295devops-groupo4/Ejercicio1_Docker/'
+DOCKERFILE=$PROYECTO'create_dockerfile.sh'
+DOCKERCOMPOSE=$PROYECTO'create_docker_compose.sh'
 
 
 #Colores
@@ -73,15 +73,21 @@ sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
 
 
-
+sleep 1
 if [ -d "${DOCKERFILE}" ]; then
     echo -e "\n${LBLUE}Dockerfile  ya existe...${NC}"
     rm -rf ${${DOCKERFILE}}
+
+     echo -e "\n${LBLUE}DockerCompose ya existe...${NC}"
 fi
 echo -e "\n${LGREEN}Creando Dockerfile ${NC}"
 ${DOCKERFILE}
+sleep 3
+echo echo -e "\n${LGREEN}FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF%%%%%%%%${NC}"
+echo echo -e "\n${LGREEN}FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF%%%%%%%%${NC}"
 chmod +x ${DOCKERFILE}
 
+echo echo -e "\n${LGREEN}FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF%%%%%%%%   ${DOCKERFILE}  ${NC}"
 
 
 if [ -d "${DOCKERCOMPOSE}" ]; then
@@ -95,6 +101,7 @@ chmod +x "${DOCKERCOMPOSE}"
 
 echo -e "\n${LGREEN}STAGE 2: Build Finalizado ${NC}"
 sleep 3
+
 }
 
 deploy(){
