@@ -1,148 +1,90 @@
-# Ejercicio-1 Linux y Automatización - 
-## Un Portal DevOps para Explorar
+# IV Edición Bootcamp DevOps by RoxsRoss
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-7B42BC?logo=terraform&logoColor=white&style=for-the-badge)
+![VSCode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![kubernetes](https://img.shields.io/badge/kubernetes-326CE5?logo=kubernetes&logoColor=white&style=for-the-badge)
+![Azure](https://img.shields.io/badge/azure-0078D4?logo=microsoft-azure&logoColor=white&style=for-the-badge)
+![Amazon](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Gcp](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-2496ED?logo=docker&logoColor=white&style=for-the-badge)
+![python](https://img.shields.io/badge/python-3776AB?logo=python&logoColor=white&style=for-the-badge)
+![golang](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![github Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Gitlab](https://img.shields.io/badge/GitLab-330F63?style=for-the-badge&logo=gitlab&logoColor=white)
+![Jenkins](	https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white)
+![city](https://img.shields.io/badge/TeamCity-000000?style=for-the-badge&logo=TeamCity&logoColor=white)
 
-Con el Equipo 295, la automatización dejará de ser manual, repetitiva y propensa a errores para convertirse en un proceso rápido y seguro.
+---
+![](https://github.com/roxsross/roxsross/blob/main/images/roxsross-banner-1.png)
 
-## Acerca de DevOps Travel
+🔥🔥🔥🔥
 
-Los usuarios pueden reservar paquetes fácilmente a través de esta plataforma amigable en la ubicación deseada. El front-end del sitio web está desarrollado con HTML, CSS y JavaScript, asegurando flexibilidad y capacidad de respuesta. El back-end, impulsado por una base de datos PHP y MySQL, se ejecuta en un servidor Apache.
+### by RoxsRoss
 
-## Descripción de la Arquitectura
+---
 
-En el diagrama de arquitectura, los usuarios inician una solicitud HTTP accediendo a la aplicación a través del navegador usando "localhost" o la dirección IP del servidor. El servidor Apache responde entregando el archivo solicitado, solicitando a los usuarios que completen sus detalles, como nombre, correo electrónico y descripción.
+## Desafío DevOps: ¡Domina la Automatización y Contenedores!
 
-Una vez completado el formulario, los usuarios envían los datos al servidor. Apache reenvía estos datos a un script PHP responsable de almacenar la información en la base de datos MySQL. Si los datos se almacenan con éxito, MySQL comunica este logro al script PHP, que responde con un mensaje HTML que se muestra en el navegador del usuario. Si surge algún problema con el almacenamiento de datos, el script PHP devuelve un mensaje de error al navegador del usuario.
+¿Estás listo para enfrentar un emocionante desafío DevOps? 
 
-Esta sólida arquitectura garantiza un flujo de datos eficiente entre los usuarios, Apache, PHP y MySQL, lo que proporciona una experiencia de usuario fluida y una gestión de datos confiable.
+Pon a prueba tus habilidades en la automatización, contenedores y más. 
 
-## Diagrama de la Aplicación
-Puntos de Acceso Principales:
+Este desafío consta de tres ejercicios, y deberás elegir dos de ellos para completar. 
 
-- Página de Inicio
-- Galería
-- Paquete
-- Reserva
+¡Vamos a explorarlos!
 
-## El Desafío
+Ejercicios Disponibles:
 
-Crear un script en bash que pueda instalar la web, la base de datos y el servidor Apache en Linux (Ubuntu) para desplegar la aplicación web. Este enfoque sigue la arquitectura LAMP, que representa Linux, Apache, MySQL y PHP, un conjunto de aplicaciones de software de código abierto comúnmente utilizadas para alojar aplicaciones web dinámicas.
+- 295devops-travel: En este ejercicio, tendrás la oportunidad de trabajar con una aplicación LAMP (Linux, Apache, MySQL, PHP) llamada "295devops-travel". Configura un servidor web Apache, una base de datos MySQL y la aplicación PHP, usando contenedores docker. Tu objetivo es lograr la automatización de implementación y despliegue.
 
-### Lo que Representa LAMP
+[Repositorio](https://github.com/roxsross/bootcamp-devops-2023/blob/ejercicio2-dockeriza/295devops-travel-lamp/README.md)
 
-- Linux: El sistema operativo en el que se ejecutarán las aplicaciones web, conocido por su estabilidad y escalabilidad.
-- Apache: El servidor web, ampliamente utilizado y altamente configurable.
-- MySQL: El sistema de gestión de bases de datos relacionales utilizado para almacenar y administrar los datos de la aplicación web.
-- PHP (o a veces Perl o Python): El lenguaje de programación utilizado para desarrollar la lógica de la aplicación web.
+- 295topics-fullstack: Aquí, te enfrentarás a un desafío completo de pila completa. La aplicación "295topics" consta de un frontend y un backend. Deberás contenerizar ambos componentes utilizando Docker. Además, configurarás una base de datos MongoDB con datos iniciales y orquestarás todo el entorno utilizando Docker Compose.
 
-### Sistema Operativo: Ubuntu
+[Repositorio](https://github.com/roxsross/bootcamp-devops-2023/blob/ejercicio2-dockeriza/295topics-fullstack/README.md)
 
-## Consideraciones Importantes
+- 295words: En este ejercicio, trabajarás con la aplicación "295words", que presenta un frontend en Go, una API en Java y utiliza PostgreSQL como base de datos. Tu objetivo es crear un entorno de contenedor eficiente y escalable para esta aplicación. Utiliza Docker para contenerizar cada componente y configura la base de datos PostgreSQL para la escalabilidad.
 
-- El nombre del script puede ser elegido por el equipo, por ejemplo, "deploy.sh" o "grupo1-deploy.sh".
-- Asegúrese de conceder permisos de ejecución para ejecutarlo como ./deploy.sh.
-- El script debe evaluar si solo el usuario root puede ejecutarlo o verificar los privilegios de superusuario "sudo" antes de la ejecución.
-- Compruebe la existencia de paquetes como [git, php, apache, mariadb] para evitar reinstalarlos.
-- Automatice la adición de la contraseña de la base de datos al ejecutar el script para evitar que se almacenen datos sensibles en el repositorio.
-- Pruebe la funcionalidad de PHP.
-- Configure Apache para admitir la extensión PHP (pasos en el repositorio).
-- Considere cambiar el nombre del índice predeterminado de Apache de index.html para evitar conflictos con index.php.
-- Copie archivos estáticos al directorio de Apache /var/www/html.
-- El script debe evaluar la existencia del proyecto, realizar un git pull si existe y un git clone si no existe.
-- Asegúrese de la ingestión de datos en la base de datos.
+[Repositorio](https://github.com/roxsross/bootcamp-devops-2023/blob/ejercicio2-dockeriza/295words-docker/Readme.md)
 
-## Resumen
+### Objetivos de DevOps:
 
-Este es el flujo que debe seguir el script:
+- Automatización de implementación y despliegue.
+- Uso de contenedores Docker para lograr consistencia en los entornos de desarrollo y producción.
+- Orquestación de aplicaciones utilizando Docker Compose.
+- Publicación de imágenes de contenedor en Docker Hub para un acceso sencillo.
 
-### ETAPA 1: [Inicio]
+#### ¿Estás listo para enfrentar estos desafíos y demostrar tus habilidades DevOps? 
 
-- Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
-- Validación de la instalación de paquetes para evitar reinstalaciones.
-- Habilitar y probar la instalación de paquetes.
-
-### ETAPA 2: [Construcción]
-
-- Clonar el repositorio de la aplicación.
-- Comprobar si el repositorio de la aplicación no existe; si es así, realizar un git clone. Si existe, realizar un git pull.
-- Mover al directorio donde se almacenan los archivos de configuración de Apache (/var/www/html/).
-- Probar la existencia del código de la aplicación.
-- Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
-- Probar la compatibilidad (por ejemplo, http://localhost/info.php).
-
-### ETAPA 3: [Despliegue]
-
-- Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
-- La aplicación está disponible para los usuarios finales.
-
-### ETAPA 4: [Notificación]
-
-- Informar sobre el estado de la aplicación, ya sea que esté funcionando correctamente o tenga problemas, a través de un webhook en el canal de Discord #deploy-bootcamp.
-- La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
-
-## Documentación Adicional
-- [Cómo Instalar MariaDB en Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04)
-- [Guía de Referencia de MySQL](https://dev.mysql.com/doc/refman/8.0/en/)
-- [Comando `sed` de Linux: Usos y Ejemplos](https://www.hostinger.com/tutoriales/el-comando-sed-de-linux-usos-y-ejemplos)
-- [40 Comandos Básicos de Linux que Todo Usuario Debe Saber](https://www.hostinger.com/tutoriales/linux-commands)
+#### Selecciona dos ejercicios y ¡comienza tu viaje hacia la excelencia en DevOps!
 
 
-# Resolución del reto
+### Entregables.
 
-# Clonar repo de desafios y ejercicios
-- `git clone https://github.com/betsyninoska/295devops-group4.git`
+En lo posible se debe realizar en equipo y cargar los desafios en el formulario. [pagina de retos](https://reto.295devops.com)
 
-# Reto 1: app-295devops-travel
-- `cd 295devops-groupo4`
-- `chmod +x grupo4-deploy.sh `
-- `./grupo4-deploy.sh`
+### _"DevOps es el arte de la colaboración y la automatización, donde la innovación y la confiabilidad se unen para crear un camino continuo hacia el éxito."_
 
-- Ir a Traffic/Ports -> port 80
+🔥🔥🔥🔥
 
-![](/img/trafficport.png) 
 
-# Despliegue de las Etapas del Reto - Resolución del ejercicio
+### ✉️  &nbsp;Contactos 
 
-ETAPA 1: [Inicio del despliegue...]
-- Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
-- Validación de la instalación de paquetes para evitar reinstalaciones.
-- Habilitar y probar la instalación de paquetes
+Me puedes encontrar en:
 
-Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen:
-    [![rt001.jpg](https://i.postimg.cc/bvV8jVs7/rt001.jpg)](https://postimg.cc/kVSLQcNs)
+[![site](https://img.shields.io/badge/Hashnode-2962FF?style=for-the-badge&logo=hashnode&logoColor=white&link=https://blog.295devops.com) ](https://blog.295devops.com)
+[![Blog](https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white&link=https://dev.to/roxsross)](https://dev.to/roxsross)
+![Twitter](https://img.shields.io/twitter/follow/roxsross?style=for-the-badge)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/roxsross/)](https://www.linkedin.com/in/roxsross/)
+[![Instagram Badge](https://img.shields.io/badge/-Instagram-purple?style=for-the-badge&logo=instagram&logoColor=white&link=https://www.instagram.com/roxsross)](https://www.instagram.com/roxsross/)
+[![Youtube Badge](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&link=https://www.youtube.com/channel/UCa-FcaB75ZtqWd1YCWW6INQ)](https://www.youtube.com/channel/UCa-FcaB75ZtqWd1YCWW6INQ)
 
-### ETAPA 2: [Construcción - Build - Despliegue]
 
-- Clonar el repositorio de la aplicación.
-- Comprobar si el repositorio de la aplicación no existe; si es así, realizar un git clone. Si existe, realizar un git pull.
-- Mover al directorio donde se almacenan los archivos de configuración de Apache (/var/www/html/).
-- Probar la existencia del código de la aplicación.
-- Realizar la creación de la base de datos en MariaDb y la importación de los datos.
-- Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
-- Probar la compatibilidad (por ejemplo, http://localhost/info.php).
-
-    Se ofrece a continuación una imagen de como se resolvieron los requisitos en esta etapa:
-    [![rt002.jpg](https://i.postimg.cc/FzmFGWzw/rt002.jpg)](https://postimg.cc/gXSP2KvK)
-    
-### ETAPA 3: [Despliegue final]
-
-- Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
-- La aplicación está disponible para los usuarios finales.
-
-A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
-[![rt004.jpg](https://i.postimg.cc/fTR0CTVz/rt004.jpg)](https://postimg.cc/kDL4XCNz)
-
-### ETAPA 4: [Notificación]
-
-- Informar sobre el estado de la aplicación, ya sea que esté funcionando correctamente o tenga problemas, a través de un webhook en el canal de Discord #deploy-bootcamp.
-- La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
-
-Esta etapa fue resuelta como se mestra en la imagen:
-[![rt005.jpg](https://i.postimg.cc/FHQtSdfn/rt005.jpg)](https://postimg.cc/N5bPq0k1)
-
-    La notificacíon de envío a Discord se muestra a continuación:
-
-[![discordr4.jpg](https://i.postimg.cc/c4Lt6Gps/discordr4.jpg)](https://postimg.cc/7bjZQdPc)
-
-A continuación ofrecemos un vídeo del despliegue para su evaluación:
-
-[![Video](https://img.youtube.com/vi/v0zvGUrv3KY/maxresdefault.jpg)](https://youtu.be/v0zvGUrv3KY)
+<samp>
+"Para entender algo no debes entenderlo sino serlo"
+<samp>
+  </div>
+  
+   [![Comprar](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black&link=https://www.buymeacoffee.com/roxsross)](https://www.buymeacoffee.com/roxsross)
