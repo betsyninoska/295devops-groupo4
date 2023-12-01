@@ -2,18 +2,24 @@
 #Programa para mostrar menu de opciones
 #Autor: Juan M Parra D.
 
-#Variable
+#Variable Repositorio ejercicio
 REPO="bootcamp-devops-2023"
-BRANCH="ejercicio1-dockeriza"
+BRANCH="ejercicio2-dockeriza"
 FOLDER="295devops-travel-lamp"
+
+
+#Variables proyecto para desplegar
+PROYECTO='/root/295devops-groupo4/Ejercicio1_Docker'
+DOCKERFILE=$PROYECTO'/create_docker_compose.sh'
+DOCKERCOMPOSE=$PROYECTO'create_dockerfile.sh'
+
+
 #Colores
 LRED='\033[1;31m'
 LGREEN='\033[1;32m'
 NC='\033[0m'
 LBLUE='\033[0;34m'
 LYELLOW='\033[1;33m'
-DOCKERFILE='/root/295devops-groupo4/Ejercicio1_Docker/create_dockerfile.sh'
-DOCKERCOMPOSE='/root/295devops-groupo4/Ejercicio1_Docker/create_docker_compose.sh'
 
 
 init(){
@@ -65,6 +71,9 @@ sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
 ### Crear Dockerfile en . 
 
+
+
+
 if [ -d "${DOCKERFILE}" ]; then
     echo -e "\n${LBLUE}Dockerfile  ya existe...${NC}"
     rm -rf ${${DOCKERFILE}}
@@ -81,7 +90,7 @@ if [ -d "${DOCKERCOMPOSE}" ]; then
 fi
 #creando Docker-Compose file
 echo -e "\n${LGREEN}Creando DockerCompose File ${NC}"
-${DOCKERFILE}
+${DOCKERCOMPOSE}
 chmod +x "${DOCKERCOMPOSE}"
 
 echo -e "\n${LGREEN}STAGE 2: Build Finalizado ${NC}"
@@ -89,7 +98,7 @@ sleep 3
 }
 
 deploy(){
-cd $BRANCH
+cd $PROYECTO
 # Ejecutar Docker Compose
 docker-compose up -d
 
