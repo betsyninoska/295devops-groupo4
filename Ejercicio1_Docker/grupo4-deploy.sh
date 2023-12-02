@@ -10,9 +10,10 @@ FOLDER="295devops-travel-lamp"
 
 #Variables proyecto para desplegar
 PROYECTO='/root/295devops-groupo4/Ejercicio1_Docker/'
-DOCKERFILE=$PROYECTO'create_dockerfile.sh'
-DOCKERCOMPOSE=$PROYECTO'create_docker_compose.sh'
-
+CREATE_DOCKERFILE=$PROYECTO'create_dockerfile.sh'
+CREATE_DOCKERCOMPOSE=$PROYECTO'create_docker_compose.sh'
+DOCKER_COMPOSE=$PROYECTO'docker-compose.yml'
+DOCKER_FILE=$PROYECTO'Dockerfile'
 
 #Colores
 LRED='\033[1;31m'
@@ -70,14 +71,18 @@ sed -i 's/""/getenv('MYSQL_PASSWORD')/g' config.php
 sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
 ### Crear Dockerfile en . 
-echo "DOCKER FILE"
-echo "${DOCKERFILE}   " ${DOCKERFILE} 
 
-if [ -d "${DOCKERFILE}" ]; then
-    chmod +x "${DOCKERFILE}"
-    echo -e "\n${LGREEN}Create Dockerfil ${NC}"
-     echo "${DOCKERFILE}   " ${DOCKERFILE} 
-exit 1
+if [ -f "${DOCKER_FILE}" ]; then
+ rm -rf ${DOCKER_FILE}
+fi
+
+
+if [ -f "${CREATE_DOCKERFILE}" ]; then
+    chmod +x "${CREATE_DOCKERFILE}"   
+    echo -e "\n${LGREEN}Create Dockerfile ${NC}"
+    touch ${DOCKER_FILE}
+    ${CREATE_DOCKERFILE} 
+   
 else
     echo -e "\n${LGREEN}Generator DockerFile no exist ${NC}"
     exit 1
@@ -85,11 +90,16 @@ fi
 
 
 
-if [ -d "${DOCKERCOMPOSE}" ]; then
+if [ -f "DOCKER_COMPOSE" ]; then
+ rm -rf ${DOCKER_COMPOSE}
+fi
+
+if [ -f "${CREATE_DOCKERCOMPOSE}" ]; then
     #creando Docker-Compose file
-    chmod +x "${DOCKERCOMPOSE}"
+    chmod +x "${CREATE_DOCKERCOMPOSE}"
     echo -e "\n${LGREEN}Creando DockerCompose File ${NC}"
-    sh ${DOCKERCOMPOSE}
+    touch ${DOCKER_COMPOSE}
+    ${CREATE_DOCKERCOMPOSE}
 
 else
     echo -e "\n${LGREEN}Generator  DockerCompose no exist ${NC}"
