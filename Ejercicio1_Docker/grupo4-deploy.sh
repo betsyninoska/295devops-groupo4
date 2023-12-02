@@ -70,34 +70,32 @@ sed -i 's/""/getenv('MYSQL_PASSWORD')/g' config.php
 sed -i 's/"devopstravel"/getenv('MYSQL_DATABASE')/g' config.php
 
 ### Crear Dockerfile en . 
+echo "DOCKER FILE"
+echo "${DOCKERFILE}   " ${DOCKERFILE} 
 
-
-
-sleep 1
 if [ -d "${DOCKERFILE}" ]; then
-    echo -e "\n${LBLUE}Dockerfile  ya existe...${NC}"
-    rm -rf ${${DOCKERFILE}}
-
-     echo -e "\n${LBLUE}DockerCompose ya existe...${NC}"
+    chmod +x "${DOCKERFILE}"
+    echo -e "\n${LGREEN}Create Dockerfil ${NC}"
+     echo "${DOCKERFILE}   " ${DOCKERFILE} 
+exit 1
+else
+    echo -e "\n${LGREEN}Generator DockerFile no exist ${NC}"
+    exit 1
 fi
-echo -e "\n${LGREEN}Creando Dockerfile ${NC}"
-${DOCKERFILE}
-sleep 3
-echo echo -e "\n${LGREEN}FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF%%%%%%%%${NC}"
-echo echo -e "\n${LGREEN}FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF%%%%%%%%${NC}"
-chmod +x ${DOCKERFILE}
 
-echo echo -e "\n${LGREEN}FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF%%%%%%%%   ${DOCKERFILE}  ${NC}"
 
 
 if [ -d "${DOCKERCOMPOSE}" ]; then
-    echo -e "\n${LBLUE}DockerCompose ya existe...${NC}"
-    rm -rf ${DOCKERCOMPOSE}
+    #creando Docker-Compose file
+    chmod +x "${DOCKERCOMPOSE}"
+    echo -e "\n${LGREEN}Creando DockerCompose File ${NC}"
+    sh ${DOCKERCOMPOSE}
+
+else
+    echo -e "\n${LGREEN}Generator  DockerCompose no exist ${NC}"
+    exit 1
 fi
-#creando Docker-Compose file
-echo -e "\n${LGREEN}Creando DockerCompose File ${NC}"
-${DOCKERCOMPOSE}
-chmod +x "${DOCKERCOMPOSE}"
+
 
 echo -e "\n${LGREEN}STAGE 2: Build Finalizado ${NC}"
 sleep 3
