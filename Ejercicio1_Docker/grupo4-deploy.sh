@@ -78,11 +78,11 @@ fi
 
 
 if [ -f "${CREATE_DOCKERFILE}" ]; then
-    chmod +x "${CREATE_DOCKERFILE}"   
     echo -e "\n${LGREEN}Create Dockerfile ${NC}"
     touch ${DOCKER_FILE}
-    ${CREATE_DOCKERFILE} 
-   
+    chmod 777  ${DOCKER_FILE}
+    chmod 777  ${CREATE_DOCKERFILE}
+    ${CREATE_DOCKERFILE}
 else
     echo -e "\n${LGREEN}Generator DockerFile no exist ${NC}"
     exit 1
@@ -96,11 +96,11 @@ fi
 
 if [ -f "${CREATE_DOCKERCOMPOSE}" ]; then
     #creando Docker-Compose file
-    chmod +x "${CREATE_DOCKERCOMPOSE}"
     echo -e "\n${LGREEN}Creando DockerCompose File ${NC}"
     touch ${DOCKER_COMPOSE}
+    chmod 777  ${DOCKER_COMPOSE}
+    chmod 777  ${CREATE_DOCKERCOMPOSE}
     ${CREATE_DOCKERCOMPOSE}
-
 else
     echo -e "\n${LGREEN}Generator  DockerCompose no exist ${NC}"
     exit 1
@@ -113,8 +113,8 @@ sleep 3
 }
 
 deploy(){
-cd $PROYECTO
 # Ejecutar Docker Compose
+
 docker-compose up -d
 
     sleep 1
@@ -132,7 +132,8 @@ notify() {
     echo -e "\n${LGREEN}STAGE 4ii: [NOTIFY]${NC}"
     # Configura el token de acceso de tu bot de Discord
     DISCORD="https://discord.com/api/webhooks/1154865920741752872/au1jkQ7v9LgQJ131qFnFqP-WWehD40poZJXRGEYUDErXHLQJ_BBszUFtVj8g3pu9bm7h"
-    # Verifica si se proporcionÃ³ el argumento del directorio del repositorio
+    
+# Verifica si se proporcionÃ³ el argumento del directorio del repositorio
     if [ $# -ne 1 ]; then
         echo "Uso: $0 <ruta_al_repositorio>"
         exit 1
