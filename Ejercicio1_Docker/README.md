@@ -105,4 +105,4 @@ Este es el flujo que debe seguir el script:
   Colocar usuario y clave
 - python3  subiar_a_dockerhub.py
 - Verificar en https://hub.docker.com/repositories/{USUARIO}
-para este esjecicio se utilizó  https://hub.docker.com/repositories/bpalencia
+para este ejercicio se utilizó  https://hub.docker.com/repositories/bpalencia
