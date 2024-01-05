@@ -26,9 +26,9 @@ def build_and_push_docker_image(image_name, dockerfile_path, registry_url, tag_p
     print("Proceso completado.")
 
 if __name__ == "__main__":
-    image_name = "mi_imagen"
-    dockerfile_path = "."  # Ruta donde esta Dockerfile
-    registry_url = "userdockerhub"
+    image_name = "295devops-travel-lamp_php"
+    dockerfile_path = "/root/295devops-groupo4/Ejercicio1_Docker/bootcamp-devops-2023/295devops-travel-lamp"  # Ruta donde esta Dockerfile
+    registry_url = "bpalencia"
     tag_prefix = "v" 
 
     build_and_push_docker_image(image_name, dockerfile_path, registry_url, tag_prefix)
