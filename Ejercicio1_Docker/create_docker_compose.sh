@@ -78,6 +78,6 @@ networks:
 "
 
 # Guardar el contenido en el archivo docker-compose.yml
-echo "$DOCKER_COMPOSE_CONTENT" > /root/295devops-groupo4/Ejercicio1_Docker/docker-compose.yml
+echo "$DOCKER_COMPOSE_CONTENT" > docker-compose.yml
 
 echo "El archivo docker-compose.yml ha sido creado exitosamente."
