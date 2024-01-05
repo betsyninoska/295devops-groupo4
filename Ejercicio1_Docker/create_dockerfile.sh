@@ -17,6 +17,6 @@ EXPOSE 80
 '
 
 # Escribir el contenido en el archivo Dockerfile
-echo "$DOCKERFILE_CONTENT" > '/root/295devops-groupo4/Ejercicio1_Docker/Dockerfile'
+echo "$DOCKERFILE_CONTENT" > 'Dockerfile'
 
 echo "Archivo Dockerfile creado con el contenido proporcionado."
