@@ -180,7 +180,8 @@ notify() {
     echo -e "\n${LGREEN}STAGE 4ii: [NOTIFY]${NC}"
     # Configura el token de acceso de tu bot de Discord
     DISCORD="https://discord.com/api/webhooks/1154865920741752872/au1jkQ7v9LgQJ131qFnFqP-WWehD40poZJXRGEYUDErXHLQJ_BBszUFtVj8g3pu9bm7h"
-    # Verifica si se proporcionÃ³ el argumento del directorio del repositorio
+
+# Verifica si se proporcionÃƒÂ³ el argumento del directorio del repositorio
     if [ $# -ne 1 ]; then
         echo "Uso: $0 <ruta_al_repositorio>"
         exit 1
@@ -193,32 +194,32 @@ notify() {
     REPO_NAME=$(basename $(git rev-parse --show-toplevel))
     # Obtiene la URL remota del repositorio
     REPO_URL=$(git remote get-url origin)
-    WEB_URL="http://localhost/index.php"    
+    WEB_URL="http://localhost/index.php"
     # Realiza una solicitud HTTP GET a la URL
     HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$WEB_URL")
 
 
     if [ "$HTTP_STATUS" -eq 200 ]; then
-        # ObtÃ©n informaciÃ³n del repositorio
+        # ObtÃƒÂ©n informaciÃƒÂ³n del repositorio
         DEPLOYMENT_INFO2="Despliegue del repositorio $REPO_NAME: "
-        DEPLOYMENT_INFO="La pÃ¡gina web $WEB_URL estÃ¡ en lÃ­nea."
-        GRUPO="Equipo 4"        
-        COMMIT="Commit: $(git rev-parse --short HEAD)"
-        AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
-        DESCRIPTION="DescripciÃ³n: $(git log -1 --pretty=format:'%s')"
-        echo -e "\n${LGREEN}$i La aplicacion esta funcional ${NC}"
-    else
-        DEPLOYMENT_INFO="La pÃ¡gina web $WEB_URL no estÃ¡ en lÃ­nea."
+        DEPLOYMENT_INFO="La pÃƒÂ¡gina web $WEB_URL estÃƒÂ¡ en lÃƒÂ­nea."
         GRUPO="Equipo 4"
         COMMIT="Commit: $(git rev-parse --short HEAD)"
         AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
-        DESCRIPTION="DescripciÃ³n: $(git log -1 --pretty=format:'%s')"
+        DESCRIPTION="Descripcion: $(git log -1 --pretty=format:'%s')"
+        echo -e "\n${LGREEN}$i La aplicacion esta funcional ${NC}"
+    else
+        DEPLOYMENT_INFO="La pa¡gina web $WEB_URL no estÃƒÂ¡ en lÃƒÂ­nea."
+        GRUPO="Equipo 4"
+        COMMIT="Commit: $(git rev-parse --short HEAD)"
+        AUTHOR="Autor: $(git log -1 --pretty=format:'%an')"
+        DESCRIPTION="DescripciÃƒÂ³n: $(git log -1 --pretty=format:'%s')"
         echo -e "\n${LRED}$i La aplicacion no esta lista ${NC}"
     fi
 
     MESSAGE="$DEPLOYMENT_INFO2\n$DEPLOYMENT_INFO\n$COMMIT\n$AUTHOR\n$GRUPO\n$REPO_URL\n$DESCRIPTION"
 
-    # EnvÃ­a el mensaje a Discord utilizando la API de Discord
+    # EnvÃƒÂ­a el mensaje a Discord utilizando la API de Discord
     curl -X POST -H "Content-Type: application/json" \
          -d '{
            "content": "'"${MESSAGE}"'"
@@ -234,6 +235,6 @@ else
 init
 build
 deploy
-notify "/root/295devops-groupo4/Ejercicio1_Docker/$REPO"
+notify "/root/295devops-groupo4/Ejercicio2_Docker/$REPO"
 
 fi
