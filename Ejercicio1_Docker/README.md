@@ -89,7 +89,7 @@ Este es el flujo que debe seguir el script:
 # Resolucion
 
 # Clonar repo de desafios y ejercicios
-- `git clone https://github.com/betsyninoska/295devops-group4.git`
+- `git clone https://github.com/betsyninoska/295devops-groupo4/`
 
 # Reto 1: app-295devops-travel
 - `cd 295devops-groupo4`
