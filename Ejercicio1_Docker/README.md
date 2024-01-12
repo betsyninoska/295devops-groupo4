@@ -93,9 +93,9 @@ Este es el flujo que debe seguir el script:
 
 # Reto 1: app-295devops-travel
 - `cd 295devops-groupo4`
-- `chmod +x grupo4-deploy.sh `
+- git checkout docker
+- cd Ejercicio1_Docker
 - `./grupo4-deploy.sh`
-
 - Ir a Traffic/Ports -> port 80
 
 ![](/img/trafficport.png) 
