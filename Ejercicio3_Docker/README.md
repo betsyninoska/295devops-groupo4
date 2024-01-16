@@ -70,4 +70,29 @@ Resultados:
 
 ![](../assets/2.png)
 
+# Clonar repo de desafios y ejercicios
+- `git clone https://github.com/betsyninoska/295devops-groupo4/`
+
+# Reto 1: app-295devops-travel
+- `cd 295devops-groupo4`
+- `git checkout docker`
+- `cd Ejercicio3_Docker`
+- `./deploy295words.sh`
+- Ir a Traffic/Ports -> port 8080
+
+![](/img/trafficport.png) 
+
+# Subir imagen al repositorio de Github (https://hub.docker.com/repositories/{USUARIO})
+- `docker login`
+  Colocar usuario y clave
+- `python3  subiar_a_dockerhub.py`
+- Verificar en https://hub.docker.com/repositories/{USUARIO}
+- Para este ejercicio se utilizó  https://hub.docker.com/repositories/bpalencia "https://hub.docker.com/repository/docker/bpalencia/295words-docker_api/general"
+
+# Descargar y correr la imagen
+- `docker pull bpalencia/295words-docker_api:v20240116032347`
+- `docker run -d -p 8080:80 bpalencia/295words-docker_api:v20240116032347`
+- Si estas utilizando killercoda, coloca como puerto el 8080 
+
+
 ![](../assets/3.png)
