@@ -106,3 +106,8 @@ Este es el flujo que debe seguir el script:
 - `python3  subiar_a_dockerhub.py`
 - Verificar en https://hub.docker.com/repositories/{USUARIO}
 - Para este ejercicio se utilizó  https://hub.docker.com/repositories/bpalencia
+
+# Descargar y correr la imagen
+- `docker pull bpalencia/295devops-travel-lamp_php:v20240112153445`
+- `docker run -d -p 8080:80 bpalencia/295devops-travel-lamp_php:v20240112153445`
+- Si estas utilizando killercoda, coloca como puerto el 8080 
