@@ -218,6 +218,6 @@ else
 init
 build
 deploy
-notify "/root/295devops-groupo4/Ejercicio3_Docker"
+#notify "/root/295devops-groupo4/Ejercicio3_Docker/$REPO"
 fi
 
