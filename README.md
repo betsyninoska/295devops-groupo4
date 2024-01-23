@@ -1,148 +1,132 @@
-# Ejercicio-1 Linux y Automatización - 
-## Un Portal DevOps para Explorar
+# IV Edición Bootcamp DevOps by RoxsRoss
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-7B42BC?logo=terraform&logoColor=white&style=for-the-badge)
+![VSCode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![kubernetes](https://img.shields.io/badge/kubernetes-326CE5?logo=kubernetes&logoColor=white&style=for-the-badge)
+![Azure](https://img.shields.io/badge/azure-0078D4?logo=microsoft-azure&logoColor=white&style=for-the-badge)
+![Amazon](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Gcp](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-2496ED?logo=docker&logoColor=white&style=for-the-badge)
+![python](https://img.shields.io/badge/python-3776AB?logo=python&logoColor=white&style=for-the-badge)
+![golang](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![github Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Gitlab](https://img.shields.io/badge/GitLab-330F63?style=for-the-badge&logo=gitlab&logoColor=white)
+![Jenkins](	https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white)
+![city](https://img.shields.io/badge/TeamCity-000000?style=for-the-badge&logo=TeamCity&logoColor=white)
 
-Con el Equipo 295, la automatización dejará de ser manual, repetitiva y propensa a errores para convertirse en un proceso rápido y seguro.
+---
+![](https://github.com/roxsross/roxsross/blob/main/images/roxsross-banner-1.png)
 
-## Acerca de DevOps Travel
+🔥🔥🔥🔥
 
-Los usuarios pueden reservar paquetes fácilmente a través de esta plataforma amigable en la ubicación deseada. El front-end del sitio web está desarrollado con HTML, CSS y JavaScript, asegurando flexibilidad y capacidad de respuesta. El back-end, impulsado por una base de datos PHP y MySQL, se ejecuta en un servidor Apache.
+### by RoxsRoss
 
-## Descripción de la Arquitectura
+---
+## Descripción del Desafío
 
-En el diagrama de arquitectura, los usuarios inician una solicitud HTTP accediendo a la aplicación a través del navegador usando "localhost" o la dirección IP del servidor. El servidor Apache responde entregando el archivo solicitado, solicitando a los usuarios que completen sus detalles, como nombre, correo electrónico y descripción.
+¡Bienvenido al desafío final del bootcamp DevOps! En este desafío, demostrarás tus habilidades integrando un robusto pipeline de CI/CD utilizando Jenkins y desplegando una aplicación completa en un clúster local de Kubernetes (Minikube). 
+La aplicación comprende varios componentes esenciales: 
+- Una aplicación web front-end en Python, 
+- Un backend .NET, 
+- Un servidor Redis para votos, 
+- Una base de datos PostgreSQL respaldada por un volumen Docker, 
+- y Una aplicación web Node.js que muestra los resultados de la votación en tiempo real.
 
-Una vez completado el formulario, los usuarios envían los datos al servidor. Apache reenvía estos datos a un script PHP responsable de almacenar la información en la base de datos MySQL. Si los datos se almacenan con éxito, MySQL comunica este logro al script PHP, que responde con un mensaje HTML que se muestra en el navegador del usuario. Si surge algún problema con el almacenamiento de datos, el script PHP devuelve un mensaje de error al navegador del usuario.
+## Objetivo General
 
-Esta sólida arquitectura garantiza un flujo de datos eficiente entre los usuarios, Apache, PHP y MySQL, lo que proporciona una experiencia de usuario fluida y una gestión de datos confiable.
+Implementar un pipeline de CI/CD que automatice la construcción, las pruebas 
+y el despliegue de la aplicación en un entorno local de Kubernetes (Minikube).
 
-## Diagrama de la Aplicación
-Puntos de Acceso Principales:
+## Pasos del Desafío
 
-- Página de Inicio
-- Galería
-- Paquete
-- Reserva
+### 1. Configuración del Repositorio
 
-## El Desafío
+- Utiliza un sistema de control de versiones (Git) para almacenar el código fuente de la aplicación.
+- Estructura el repositorio con las ramas de desarrollo y producción.
 
-Crear un script en bash que pueda instalar la web, la base de datos y el servidor Apache en Linux (Ubuntu) para desplegar la aplicación web. Este enfoque sigue la arquitectura LAMP, que representa Linux, Apache, MySQL y PHP, un conjunto de aplicaciones de software de código abierto comúnmente utilizadas para alojar aplicaciones web dinámicas.
+### 2. Construcción del Pipeline en Jenkins
 
-### Lo que Representa LAMP
+- Instala Jenkins en tu entorno local o en una máquina virtual.
+- Crea un pipeline en Jenkins que abarque las siguientes etapas:
+  - **Construcción del Front-end en Python:**
+    - Clona el repositorio.
+    - Construye la aplicación web front-end en Python.
 
-- Linux: El sistema operativo en el que se ejecutarán las aplicaciones web, conocido por su estabilidad y escalabilidad.
-- Apache: El servidor web, ampliamente utilizado y altamente configurable.
-- MySQL: El sistema de gestión de bases de datos relacionales utilizado para almacenar y administrar los datos de la aplicación web.
-- PHP (o a veces Perl o Python): El lenguaje de programación utilizado para desarrollar la lógica de la aplicación web.
+  - **Pruebas Unitarias y de Integración:**
+    - Ejecuta pruebas unitarias para el front-end.
+    - Configura y ejecuta pruebas de integración.
 
-### Sistema Operativo: Ubuntu
+  - **Construcción y Despliegue del Backend .NET:**
+    - Construye el backend .NET.
+    - Despliega el backend en un entorno de prueba.
 
-## Consideraciones Importantes
+  - **Pruebas Automatizadas para el Backend .NET:**
+    - Ejecuta pruebas automatizadas para el backend .NET.
 
-- El nombre del script puede ser elegido por el equipo, por ejemplo, "deploy.sh" o "grupo1-deploy.sh".
-- Asegúrese de conceder permisos de ejecución para ejecutarlo como ./deploy.sh.
-- El script debe evaluar si solo el usuario root puede ejecutarlo o verificar los privilegios de superusuario "sudo" antes de la ejecución.
-- Compruebe la existencia de paquetes como [git, php, apache, mariadb] para evitar reinstalarlos.
-- Automatice la adición de la contraseña de la base de datos al ejecutar el script para evitar que se almacenen datos sensibles en el repositorio.
-- Pruebe la funcionalidad de PHP.
-- Configure Apache para admitir la extensión PHP (pasos en el repositorio).
-- Considere cambiar el nombre del índice predeterminado de Apache de index.html para evitar conflictos con index.php.
-- Copie archivos estáticos al directorio de Apache /var/www/html.
-- El script debe evaluar la existencia del proyecto, realizar un git pull si existe y un git clone si no existe.
-- Asegúrese de la ingestión de datos en la base de datos.
+  - **Construcción del Backend con Node.js:**
+    - Construye la aplicación web Node.js.
 
-## Resumen
+  - **Despliegue en Minikube:**
+    - Configura y despliega la aplicación en Minikube.
+    - Utiliza configuraciones de Kubernetes para manejar Redis y PostgreSQL.
 
-Este es el flujo que debe seguir el script:
+### 3. Creación de Objetos de Kubernetes
 
-### ETAPA 1: [Inicio]
+- Crea archivos YAML separados para cada objeto de Kubernetes que represente los componentes de la aplicación (Deployment, Service, PersistentVolume, etc.).
 
-- Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
-- Validación de la instalación de paquetes para evitar reinstalaciones.
-- Habilitar y probar la instalación de paquetes.
+### 4. Creación de Imágenes Docker
 
-### ETAPA 2: [Construcción]
+- Crea Dockerfiles para cada componente de la aplicación.
+- Utiliza Jenkins para construir y etiquetar las imágenes Docker.
 
-- Clonar el repositorio de la aplicación.
-- Comprobar si el repositorio de la aplicación no existe; si es así, realizar un git clone. Si existe, realizar un git pull.
-- Mover al directorio donde se almacenan los archivos de configuración de Apache (/var/www/html/).
-- Probar la existencia del código de la aplicación.
-- Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
-- Probar la compatibilidad (por ejemplo, http://localhost/info.php).
+### 5. Publicación en Docker Hub usando Jenkins
 
-### ETAPA 3: [Despliegue]
+- Configura Jenkins para autenticarse y publicar las imágenes Docker en un repositorio en Docker Hub.
 
-- Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
-- La aplicación está disponible para los usuarios finales.
+### 6. Notificación y Monitoreo
 
-### ETAPA 4: [Notificación]
+- Configura notificaciones en el pipeline para informar sobre el éxito o fracaso de cada etapa.
+- Implementa monitoreo básico para la aplicación desplegada en Minikube.
 
-- Informar sobre el estado de la aplicación, ya sea que esté funcionando correctamente o tenga problemas, a través de un webhook en el canal de Discord #deploy-bootcamp.
-- La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
+### 7. Documentación
 
-## Documentación Adicional
-- [Cómo Instalar MariaDB en Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04)
-- [Guía de Referencia de MySQL](https://dev.mysql.com/doc/refman/8.0/en/)
-- [Comando `sed` de Linux: Usos y Ejemplos](https://www.hostinger.com/tutoriales/el-comando-sed-de-linux-usos-y-ejemplos)
-- [40 Comandos Básicos de Linux que Todo Usuario Debe Saber](https://www.hostinger.com/tutoriales/linux-commands)
+- Proporciona documentación detallada sobre cómo ejecutar el pipeline.
+- Incluye información sobre la estructura del pipeline, requisitos previos y configuraciones adicionales.
+
+## Consideraciones Adicionales
+
+- Asegúrate de gestionar las credenciales y secretos de manera segura en Jenkins.
+- Utiliza scripts y configuraciones versionadas para la construcción y despliegue.
+- Realiza una revisión de seguridad del pipeline.
+
+## Importante (Opcionales)
+
+- En caso de no poder usar Minikube, puede usar alternativas como killercoda
+
+## Puntos Extra (Opcionales)
+
+- Implementa rollback automático en caso de fallos en producción.
+- Integra pruebas de seguridad en el pipeline.
+- Configura Jenkins para integrarse con herramientas de análisis estático de código.
+
+Este desafío abarca aspectos clave de DevOps, desde la construcción y pruebas hasta el despliegue y la monitorización. Asegúrate de comprender cada componente de la aplicación y cómo interactúan entre sí. ¡Buena suerte!
 
 
-# Resolución del reto
 
-# Clonar repo de desafios y ejercicios
-- `git clone https://github.com/betsyninoska/295devops-group4.git`
+🔥🔥🔥🔥
 
-# Reto 1: app-295devops-travel
-- `cd 295devops-groupo4`
-- `chmod +x grupo4-deploy.sh `
-- `./grupo4-deploy.sh`
 
-- Ir a Traffic/Ports -> port 80
+### ✉️  &nbsp;Contactos 
 
-![](/img/trafficport.png) 
 
-# Despliegue de las Etapas del Reto - Resolución del ejercicio
 
-ETAPA 1: [Inicio del despliegue...]
-- Instalación de paquetes en el sistema operativo Ubuntu: [apache, php, mariadb, git, curl, etc.].
-- Validación de la instalación de paquetes para evitar reinstalaciones.
-- Habilitar y probar la instalación de paquetes
 
-Los requisitos planteados se resolvieron cómo se muestra en la siguiente imagen:
-    [![rt001.jpg](https://i.postimg.cc/bvV8jVs7/rt001.jpg)](https://postimg.cc/kVSLQcNs)
+<samp>
+<samp>
+  </div>
+  
 
-### ETAPA 2: [Construcción - Build - Despliegue]
 
-- Clonar el repositorio de la aplicación.
-- Comprobar si el repositorio de la aplicación no existe; si es así, realizar un git clone. Si existe, realizar un git pull.
-- Mover al directorio donde se almacenan los archivos de configuración de Apache (/var/www/html/).
-- Probar la existencia del código de la aplicación.
-- Realizar la creación de la base de datos en MariaDb y la importación de los datos.
-- Ajustar la configuración de PHP para admitir archivos PHP dinámicos agregando index.php.
-- Probar la compatibilidad (por ejemplo, http://localhost/info.php).
-
-    Se ofrece a continuación una imagen de como se resolvieron los requisitos en esta etapa:
-    [![rt002.jpg](https://i.postimg.cc/FzmFGWzw/rt002.jpg)](https://postimg.cc/gXSP2KvK)
-    
-### ETAPA 3: [Despliegue final]
-
-- Probar la aplicación; recuerde recargar Apache y acceder a la aplicación DevOps Travel.
-- La aplicación está disponible para los usuarios finales.
-
-A continuación se ofrece la explicación de cómo se ejecutó lo planteado:
-[![rt004.jpg](https://i.postimg.cc/fTR0CTVz/rt004.jpg)](https://postimg.cc/kDL4XCNz)
-
-### ETAPA 4: [Notificación]
-
-- Informar sobre el estado de la aplicación, ya sea que esté funcionando correctamente o tenga problemas, a través de un webhook en el canal de Discord #deploy-bootcamp.
-- La información a mostrar incluye el Autor del Commit, Commit, Descripción, Grupo y Estado.
-
-Esta etapa fue resuelta como se mestra en la imagen:
-[![rt005.jpg](https://i.postimg.cc/FHQtSdfn/rt005.jpg)](https://postimg.cc/N5bPq0k1)
-
-    La notificacíon de envío a Discord se muestra a continuación:
-
-[![discordr4.jpg](https://i.postimg.cc/c4Lt6Gps/discordr4.jpg)](https://postimg.cc/7bjZQdPc)
-
-A continuación ofrecemos un vídeo del despliegue para su evaluación:
-
-[![Video](https://img.youtube.com/vi/v0zvGUrv3KY/maxresdefault.jpg)](https://youtu.be/v0zvGUrv3KY)
+COPY kubectl /bin/kubectl 
