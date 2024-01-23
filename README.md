@@ -114,6 +114,13 @@ y el despliegue de la aplicación en un entorno local de Kubernetes (Minikube).
 Este desafío abarca aspectos clave de DevOps, desde la construcción y pruebas hasta el despliegue y la monitorización. Asegúrate de comprender cada componente de la aplicación y cómo interactúan entre sí. ¡Buena suerte!
 
 
+## Solución del desafío
+- Clonar el repositorio https://github.com/betsyninoska/295devops-groupo4/
+- Las ramas a utilizar son:
+  - Desarrollo:ejercicio3-despliega_dev
+  - Produccion:ejercicio3-despliega_master
+- Los fuentes: bootcamp-devops-2023 rama ejercicio3-despliega
+- 
 
 🔥🔥🔥🔥
 
